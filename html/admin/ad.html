@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <title>vod</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	 <script
+			 src="https://code.jquery.com/jquery-2.2.4.js"
+			 integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
+			 crossorigin="anonymous"></script>
+<style>
+</style>
+ </head>
+<script type="text/javascript">
+	$.ajax({
+		type: "get",
+		url:"http://v.miguvideo.com/user/v1/member-info/",
+		contentType: "application/json;charset=utf-8",
+		dataType: "json",
+		beforeSend: function (XMLHttpRequest) {
+			XMLHttpRequest.setRequestHeader("userId", "970100008");
+			XMLHttpRequest.setRequestHeader("userToken", "7191E06E94B71F975565");
+			XMLHttpRequest.setRequestHeader("SDKCEId", "79acd784-cbbb-4cae-8778-8723e001164b");
+			XMLHttpRequest.setRequestHeader("clientId", "pc");
+		},
+		success: function (data) {
+			alert(data);
+		},error:function(error){
+			console.log(error);
+		}
+	});
+</script>
+<body>
+ <p>sfafdsafd</p>
+</body>
+
+</html>
+<script>
+</script>

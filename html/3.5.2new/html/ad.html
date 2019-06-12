@@ -1,0 +1,32 @@
+﻿<html>
+	<head>
+	<style type="text/css">
+		body{ 
+			 		overflow:hidden;
+					margin :0;
+					padding :0;
+					width:100%;
+					height:100%;
+					background-color: #000000;
+					text-align:center;
+		}
+	</style>
+	<script type="text/javascript">
+		function opennew(){
+			migu_app.SetConfig("newbrowser","http://www.baidu.com");
+			
+		}
+		function closethis(){
+			migu_app.SetConfig('closead','');
+		}
+	</script>
+</head>
+<body>
+	
+<a href="javascript:void(0)" onclick='opennew()'><img src="http://ggc.cmvideo.cn/v1/iflyad/deliverysystem/direct/1538628722503.jpg" border="0"></a>
+	
+<div style="position:absolute;width:28px;height:28px;right:10px;top:10px;cursor:pointer;text-align:center;z-index:9999" onclick="closethis()">
+	<img style="width:28px;height:28px;" src="images/close.png" border="0"/>
+	</div>
+</body>
+</html>

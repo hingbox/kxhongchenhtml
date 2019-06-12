@@ -1,0 +1,53 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>显示指定驱动器的大小及可用空间</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+</head>
+
+<body>
+<form name="form1" method="post" action="">
+    盘符：
+    <input type="text" name="text1">
+    &nbsp;&nbsp;&nbsp;
+    <input type="button" name="Button1" value="磁盘空间" onclick="DriveSize(document.form1.text1)">
+</form>
+<script language="javascript">
+
+    var xmlHttp;
+
+    //判断浏览器是否支持ActiveX控件
+
+    if(window.ActiveXObject){
+        //支持-通过ActiveXObject的一个新实例来创建XMLHttpRequest对象
+        xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+        //不支持
+    else if(window.XMLHttpRequest){
+        xmlHttp = new XMLHttpRequest()
+    }
+
+    function DriveSize(Drivename)
+    {
+        var	fso=new ActiveXObject("Scripting.FileSystemObject");
+        var	s=fso.GetDrive(Drivename.value);
+        if (s.IsReady)
+        {
+            var str,str1,AllSize=0.0;
+            str="当前驱动器的名称为:"+s.DriveLetter+"\n";
+            AllSize=s.TotalSize/1024/1024/1024;
+            str=str+"当前驱动器的大小为:"+parseInt(AllSize*10)/10+"\n";
+            AllSize=s.FreeSpace/1024/1024/1024;
+            str=str+"当前驱动器的可用空间为:"+parseInt(AllSize*10)/10;
+            alert(str);
+        }
+        else
+            alert("该驱动器无效。")
+    }
+    //-->
+</script>
+
+</body>
+</html>

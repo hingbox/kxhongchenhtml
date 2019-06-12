@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>javascript实现Tab切换</title>
+
+    <style>
+        *{padding:0px;margin:0px;}
+        ul li {cursor:pointer;
+            float:left;
+            width:100px;
+            height:30px;
+            line-height:30px;
+            text-align:center;
+            background-color:#fff;
+            border:1px #bbb solid;
+            border-bottom:none;
+        }
+        ul li.fli {background-color:#ccc;color:red;}
+        ul {overflow:hidden;list-style:none;}
+        #tab_con {width:304px;height:200px;}
+        #tab_con div{width:304px;
+            height:200px;
+            display:none;
+            border:1px #bbb solid;
+            border-top:none;
+            text-align:center;
+        }
+        #tab_con div.fdiv {display:block;
+            background-color:#ccc;
+        }
+        div:not(#tab_con){padding:20px 0px;color:blue;}
+
+    </style>
+</head>
+
+<body>
+<ul id="tab">
+    <li class="fli">tab1</li>
+    <li>tab2</li>
+    <hr/>
+</ul>
+
+<div id="tab_con">
+    <div class="fdiv">这是清华大学的校徽<img src="images/01.jpg"></div>
+    <div>这是浙江大学的校徽<img src="images/02.jpg"></div>
+    <div>这是华中科大的校徽<img src="images/03.jpg"></div>
+</div>
+<script>
+    var tabs=document.getElementById("tab").getElementsByTagName("li");
+    var divs=document.getElementById("tab_con").getElementsByTagName("div");
+    for (var i=0;i<tabs.length;i++)
+    {tabs[i].onmouseover=function(){
+        change(this);
+
+    }}
+    function change(obj){
+        for (var i=0;i<tabs.length;i++){
+            if(tabs[i]==obj)
+            {tabs[i].className="fli";
+                divs[i].className="fdiv";
+            }
+            else {
+                tabs[i].className="";
+                divs[i].className=""
+            }
+        }
+
+    }
+</script>

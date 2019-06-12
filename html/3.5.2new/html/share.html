@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>share</title>
+<style>
+*{margin:0;padding:0;background-color: #494949; overflow-y: hidden}
+#warp{
+	margin:0 auto;
+	background-color: #494949; 
+}
+#title{
+    font-family: STHeitiSC-Light,"microsoft yahei";
+	font-size: 12px;
+	color: #FFFFFF;
+	letter-spacing: 0.52px;
+	text-align: left;
+	margin-left:20px;
+	margin-right:30px;
+	margin-top:15px;
+}
+#main{
+    width:100%;
+    overflow:hidden;
+}
+#main .main-left{
+    width:298px;
+    float:left;
+}
+#toptitle{
+	font-family: STHeitiSC-Medium,"microsoft yahei";
+	font-size: 16px;
+	color: #FFFFFF;
+	letter-spacing: 0.7px;
+	text-align: left;
+	margin-left:10px;
+	margin-top:5px;
+}
+#title1{
+    font-family: STHeitiSC-Light;
+	font-size: 12px;
+	color: #21B4FF;
+	letter-spacing: 0.52px;
+	text-align: left;
+	text-decoration:none;
+}
+#title2{
+	ont-family: STHeitiSC-Light;
+	font-size: 12px;
+	color: #FFFFFF;
+	letter-spacing: 0.52px;
+	text-align: left;
+	line-height: 18px;
+}
+#main .main-right{
+    width:25px;
+    float:right;
+}
+#line{
+	width:95%;
+	text-align:center;
+	margin:0 auto;
+    border: 1px solid #979797;
+	margin-top:5px;
+}
+#content{
+    width:100%;
+    overflow:hidden;
+}
+#content .content-left{
+    width:90px;
+	height:90px;
+    float:left;
+	margin-left:20px;
+	margin-top:5px;
+}
+#content .content-right-sup{
+    width:200px;
+	height:85px;
+	margin-top:30px;
+    float:right;
+}
+</style>
+</head>
+<script type="text/javascript" src="js/param.js"></script>
+<script type="text/javascript" src="js/init.js"></script>
+<script type="text/javascript" src="js/clipboard.min.js"></script>
+<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="js/qrcode.min.js"></script>
+<script>
+var nameStr = UrlParam.paramValues("name");
+var cids = UrlParam.paramValues("cids");
+var imgHstr = UrlParam.paramValues("imgHstr");
+</script>
+<body>
+<div id="warp">    
+    <div id="main">
+        <div class="main-left"><div id="toptitle">分享</div></div>
+        <div class="main-right"><div style="margin-top:10px;"><img src="pic/close.png" width="15" height="15" style="vertical-align:middle;cursor:pointer;"  onclick="closeWin();"/></div></div>
+    </div>
+	<div id="line"></div>
+	<div id="title"></div>
+	<div  id="title"><div>分享到：<img src="pic/wb.png" width="21" height="21" style="vertical-align:middle;cursor:pointer;margin-left:2px;" onclick="shareurl(1,cids,imgHstr,nameStr);"/><img src="pic/kj.png" width="21" height="21" style="vertical-align:middle;cursor:pointer;margin-left:5px;"  onclick="shareurl(2,cids,imgHstr,nameStr);"/><img src="pic/rr.png" width="21" height="21" style="vertical-align:middle;cursor:pointer;margin-left:5px;"  onclick="shareurl(3,cids,imgHstr,nameStr);"/> <img src="pic/tb.png" width="21" height="21" style="vertical-align:middle;cursor:pointer;margin-left:5px;margin-right:10px;"  onclick="shareurl(4,cids,imgHstr,nameStr);"/><a href="javascript:void(0)" id="title1"  class="copybtn">复制视频URL</a></div></div>
+	<div id="title">用手机看：</div>
+    <div id="content">
+        <div class="content-left"><div id="qrcode" style="width:85px; height:85px; "></div></div>
+        <div class="content-right-sup"><div id="title2">用咪咕视频APP或者微信扫描</div><div id="title2">在你手机上观看或分享</div></div>
+    </div>
+</div>
+</body>
+</html>
+<script>
+document.getElementById("title").innerHTML=nameStr;
+var backUrl = "http://www.miguvideo.com/wap/resource/pc/detail/miguplay.jsp?cid="+cids;
+var clipboard = new ClipboardJS('.copybtn', {
+        text: function() {
+            return backUrl;
+        }
+    });
+
+    clipboard.on('success', function(e) {
+        console.log(e);
+    });
+
+    clipboard.on('error', function(e) {
+        console.log(e);
+    });
+
+var qrcode = new QRCode(document.getElementById("qrcode"), {
+	width : 85,
+	height : 85
+});
+function makeCode() {		
+	var elText = "http://m.miguvideo.com/wap/resource/migu/miguH5/detail/detail.jsp?cid="+cids+"&type=migu_pc" ;	
+	qrcode.makeCode(elText);
+}
+makeCode();
+
+</script>

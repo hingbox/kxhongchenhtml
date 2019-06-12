@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+<title>loading</title>
+<style type="text/css">
+*{
+	overflow-x: hidden; 
+	overflow-y: hidden;
+}
+body{
+    margin:0;
+    padding:0;
+    width:100%;
+	height:100%;	
+	background-color: #000000;
+}
+.body_bg{
+	margin:0;
+    padding:0;
+    width:100%;
+	height:100%;	
+	background-color: #000000;
+}
+.content{
+	position:absolute;
+	width:340px;
+	height:190px;
+}
+.migi_logo{
+	position:absolute;
+	top:0px;
+	left:0px;
+	padding:0px;
+	width:340px;
+	height:190px;
+}
+
+.message1{
+	position:absolute;
+	top:160px;
+	left:120px;
+	font-family: PingFangSC-Regular,"-apple-system","microsoft yahei";
+	font-size: 22px;
+	color: #FFFFFF;
+	line-height: 22px;
+}
+</style>
+<script type="text/javascript" src="./js/jquery-1.9.1.min.js"></script>
+</head>
+<body>
+	<div class="body_bg" >
+		<!--<img class="body_bg" src="./images/bg_loging2x.png">-->
+	</div>
+	<div id="content" class="content">
+		<img id="loadingIMG" class="migi_logo" src="./images/gif/Artboard Copy_00000.png"/>
+		<!--
+		<div class="message">让生活更有趣</div>
+		<img class="line" src="./images/gif/Artboard Copy_00000.png">
+		
+		-->
+		<div class="message1">即将播出</div>
+	</div>
+</body>
+<script type="text/javascript">
+function closeAD(){
+	$("#content").hide();
+}
+function pageCenter(){	
+	var iWidth=340; //弹出窗口的宽度;
+    var iHeight=190; //弹出窗口的高度;
+    var iTop = (document.documentElement.clientHeight-iHeight)/2-30; //获得窗口的垂直位置;
+    var iLeft = (document.documentElement.clientWidth-iWidth)/2; //获得窗口的水平位置;
+    $("#content").height(iHeight)
+        .width(iWidth)
+        .css('position','absolute')
+        .css("top",iTop)
+        .css("left",iLeft);
+}
+function onload2(){
+	pageCenter();
+	runGif(0);
+}
+$(document).ready(onload2);
+var i=0;
+var IMG = document.getElementById("loadingIMG");
+var isHidden = false;
+var t = -1;
+function runGif(i){
+	if(isHidden){
+		return;
+	}
+	i++;
+	if(i > 27){
+		i = 0;
+	}
+	clearTimeout(t);
+	t=setTimeout(function(){
+		if(i<10){
+			IMG.src = "./images/gif/Artboard Copy_0000"+(i)+".png";	
+		}else{
+			IMG.src = "./images/gif/Artboard Copy_000"+(i)+".png";
+		}
+		runGif(i);
+	},60);
+}
+
+function showLoading(){
+	isHidden = false;
+	runGif(0);
+}
+
+function hideLoading(){
+	isHidden = true;
+}
+
+//最大化，最小化窗体发生变化时
+$(window).resize(function() {
+	pageCenter();
+});
+
+</script>
+</html>

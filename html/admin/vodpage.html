@@ -1,0 +1,292 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <title>vod</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+ <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="js/json2.js"></script>
+<script type="text/javascript" src="js/crypto-js.js"></script>
+<script type="text/javascript" src="js/zUI.js"></script>
+<script type="text/javascript" src="js/param.js"></script>
+<script type="text/javascript" src="js/init.js"></script>
+<script type="text/javascript" src="js/divscroll.src.js"></script>
+<style>
+body{margin:0 auto;padding:0;width:278px;height:575px;background:#222222;overflow:hidden}
+#scrollbox,#scrollbox1,#scrollbox2 {
+	width:278px;
+	height:523px;
+	border:1px solid #222222;
+	overflow:hidden;
+}
+.zUIpanelScrollBox,.zUIpanelScrollBar {
+	width:8px;
+	top:1px;
+	right:2px;
+	border-radius:5px;
+}
+.zUIpanelScrollBox {
+	background:black;
+	opacity:0.1;
+	filter:alpha(opacity=10);
+}
+.zUIpanelScrollBar {
+	background:#3B3B3B;
+	opacity:0.8;
+	filter:alpha(opacity=80);
+}
+#title {
+	font-family:PingFangSC-Regular,"-apple-system","microsoft yahei";
+	font-size:14px;
+	color:#FFFFFF;
+	letter-spacing:0.61px;
+	text-align:left;
+	text-overflow:ellipsis;
+	white-space:nowrap;
+	overflow:hidden;
+}
+.title1 {
+	font-family:PingFangSC-Regular,"-apple-system","microsoft yahei";
+	font-size:12px;
+	color:#999999;
+	letter-spacing:0.52px;
+	text-align:center;
+}
+.title1over {
+	font-family:PingFangSC-Regular,"-apple-system","microsoft yahei";
+	font-size:12px;
+	color:#21B4FF;
+	letter-spacing:0.52px;
+	text-align:center;
+}
+#title3 {
+	font-family:PingFangSC-Regular,"-apple-system","microsoft yahei";
+	font-size:20px;
+	color:#999999;
+	letter-spacing:0.87px;
+	text-align:center;
+	cursor:pointer;
+}
+#title4 {
+	font-family:PingFangSC-Regular,"-apple-system","microsoft yahei";
+	font-size:20px;
+	color:#21B4FF;
+	letter-spacing:0.87px;
+	text-align:center;
+	cursor:pointer;
+}
+#destitle1 {
+	font-family:PingFangSC-Regular,"-apple-system","microsoft yahei";
+	font-size:16px;
+	color:#CCCCCC;
+	letter-spacing:0.7px;
+	text-align:left;
+}
+#destitle2 {
+	font-family:PingFangSC-Regular,"-apple-system","microsoft yahei";
+	font-size:14px;
+	color:#999999;
+	letter-spacing:0.61px;
+	text-align:left;
+	line-height:26px;
+	letter-spacing:1px;
+}
+#codetitle1 {
+	font-family:PingFangSC-Regular,"-apple-system","microsoft yahei";
+	font-size:14px;
+	color:#FFFFFF;
+	letter-spacing:0.61px;
+}
+#codetitle2 {
+	font-family:PingFangSC-Regular,"-apple-system","microsoft yahei";
+	font-size:14px;
+	color:#A5A5A5;
+	letter-spacing:0.61px;
+}
+#topmenu {
+	font-family:PingFangSC-Regular,"-apple-system","microsoft yahei";
+	font-size:14px;
+	color:#CCCCCC;
+	letter-spacing:0.17px;
+	cursor:pointer;
+}
+#topmenu2 {
+	font-family:PingFangSC-Regular,"-apple-system","microsoft yahei";
+	font-size:14px;
+	color:#21B4FF;
+	letter-spacing:0.17px;
+	cursor:pointer;
+}
+.movietitle {
+	font-family:PingFangSC-Regular,"-apple-system","microsoft yahei";
+	font-size:12px;
+	color:#21B4FF;
+	letter-spacing:0.52px;
+	text-align:left;
+}
+.movietitle1 {
+	font-family:PingFangSC-Regular,"-apple-system","microsoft yahei";
+	font-size:10px;
+	color:#21B4FF;
+	letter-spacing:0.44px;
+	text-align:left;
+}
+#movietitle2 {
+	font-family:ArialMT;
+	font-size:10px;
+	color:#FFFFFF;
+	letter-spacing:0.44px;
+	text-align:right;
+}
+.movietitleover {
+	font-family:PingFangSC-Regular,"-apple-system","microsoft yahei";
+	font-size:12px;
+	color:#999999;
+	letter-spacing:0.52px;
+	text-align:left;
+}
+.movietitle1over {
+	font-family:PingFangSC-Regular,"-apple-system","microsoft yahei";
+	font-size:10px;
+	color:#999999;
+	letter-spacing:0.44px;
+	text-align:left;
+}
+</style>
+ </head>
+<script type="text/javascript">
+jQuery.support.cors = true;
+var updateHome = UrlParam.paramValues("updateHome");
+if(updateHome==1){
+	migu_app.LoadUrl(1,"http://www.miguvideo.com/mobiletv.jsp");
+}
+var paramV1 = UrlParam.paramValues("playcid");
+if(typeof(paramV1)!="undefined"){
+	migu_app.ShowMiniEPG("blank.html",0);
+	getPlayInfo(paramV1);
+}
+//初始化数据
+function InitData(cid,isLive,mgdbId){
+	alert("进来了点播1"+cid+"->"+isLive+","+mgdbId);
+	try{
+		migu_app.CloseMiniEPG();
+		if(isLive==0){
+			if(firstPlay==1){			
+				saveHistory();
+			}
+			//点播		
+			setTimeout(function(){
+				window.location.href="vodpage.html?playcid="+cid;	
+			},100);
+				
+			//getPlayInfo(cid);
+		}else{
+			alert("进来了点播直播1");
+			firstPlay=0;
+			try{migu_app.Stop();}catch(e){};
+			window.location.href="WMSPlayerDetails.html?cid="+cid;
+		}	
+	}catch(e){
+		//alert(e);
+	}
+}
+function Login(){
+	LoginStatus(1);
+}
+updateUserData();
+</script>
+<body bgcolor="#222222" onselectstart="return false">
+  <div id="tinfomenu" onselectstart="return false" style="margin-top:15px">
+    <table border=0 cellSpacing=0 cellPadding=0 style="margin-left:20px; margin-top:40px">
+      <tr>
+        <td></td>
+      </tr>
+    </table>
+  </div>
+  <table bgcolor="#1B1B1B" border=0 cellSpacing=0 cellPadding=0 style="margin-left:0px; margin-top:8px;" width="252px">
+    <tr>
+      <td>
+        <div id="scrollbox" style="overflow:auto;">
+          <div id="seriesList" style="margin-left:20px;">
+            <!--电视剧区域-->
+            <div id="area-teleplay">
+              <table border=0 cellSpacing=0 cellPadding=0 style="margin-top:19px;table-layout:fixed;" width="230px">
+                <tr height="20px">
+                  <td id="title">
+                    <div id="tinfo101"></div>
+                  </td>
+				  <td style="text-align: left;cursor:pointer;width:22px;" >
+				  <img id="zjimg" style="vertical-align:middle;display:none;margin-bottom:5px" src="pic/zj_n2x.png" width="20" height="20" onclick="zhuiju()" title="追剧"/>
+				  </td><td style="width:8px" ></td>
+				  <td style="text-align: right;cursor:pointer;width:22px"  id="shareimgtd"><img id="shareimg" style="vertical-align:middle;display:none;" src="pic/share_n2x.png" width="22" height="22" onclick="share()" title="分享"/>
+				  </td>
+                </tr>
+              </table>
+              <table border=0 cellSpacing=0 cellPadding=0 style=" margin-top:2px">
+                <tr height="17px" class="title1">
+                  <td id="tinfo102"></td>
+                </tr>
+              </table>
+              <div id="tinfo103" onselectstart="return false"></div>
+            </div>
+            <!--电影区域-->
+            <div id="area-movie" style="display:none"></div>
+            <!--综艺区域-->
+            <div id="area-variety" style="display:none"></div>
+            <!--为你推荐区域-->
+            <div id="tinfo104"></div>
+            <!--猜你喜欢区域-->
+            <div id="tinfo105"></div>
+          </div>
+        </div>
+        <div id="scrollbox1" style="display:none">
+			<div id="seriesCode" style="margin-left:5px;">
+			<iframe src="" frameborder="0" width="270px" height="520px"  id="frame1" ></iframe>                       
+          </div>
+        </div>
+        <div id="scrollbox2" style="display:none">
+          <div id="seriesDesc" style="margin-left:20px;">
+            <table border=0 cellSpacing=0 cellPadding=0 style="margin-top:17px">
+              <tr>
+                <td height="171px">
+                  <img src="pic/default.png" width="120px" height="171px" border="0" id="desimg" /></td>
+              </tr>
+            </table>
+            <table border=0 cellSpacing=0 cellPadding=0 style="margin-top:13px" width="252px">
+              <tr id="destitle1">
+                <td height="22px" id="destag1"></td>
+              </tr>
+            </table>
+            <table border=0 cellSpacing=0 cellPadding=0 style="margin-top:6px" width="252px">
+              <tr id="destitle2">
+                <td id="destag2"></td>
+              </tr>
+              <tr id="destitle2">
+                <td id="destag3"></td>
+              </tr>
+              <tr id="destitle2">
+                <td id="destag4"></td>
+              </tr>
+              <tr id="destitle2">
+                <td id="destag5"></td>
+              </tr>
+              <tr id="destitle2">
+                <td>节目详情：</td></tr>
+              <tr id="destitle2">
+                <td id="destag6"></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </td>
+    </tr>
+  </table>
+</body>
+
+</html>
+<script>
+autoHeight();
+$("#scrollbox").niceScroll({cursorcolor:"#3B3B3B",cursorwidth: "8px",cursorborder: "1px solid #3B3B3B",cursorborderradius: "8px", autohidemode: true, iframeautoresize: true});
+$("#scrollbox1").niceScroll({cursorcolor:"#3B3B3B",cursorwidth: "8px",cursorborder: "1px solid #3B3B3B",cursorborderradius: "8px", autohidemode: true, iframeautoresize: true});
+$("#scrollbox2").niceScroll({cursorcolor:"#3B3B3B",cursorwidth: "8px",cursorborder: "1px solid #3B3B3B",cursorborderradius: "8px", autohidemode: true, iframeautoresize: true});
+$("#frame1").niceScroll({cursorcolor:"#3B3B3B",cursorwidth: "8px",cursorborder: "1px solid #3B3B3B",cursorborderradius: "8px", autohidemode: true, iframeautoresize: true});
+</script>

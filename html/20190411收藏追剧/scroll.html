@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>js简易滚动条</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="divscroll.src.js"></script>
+</head>
+<body>
+<h1>js简易滚动条</h1>
+<div id="div1" style="width:270px; height:520px; overflow:hidden; border:solid 1px gray; padding:10px; line-height:1.5;">
+    <iframe src="http://www.miguvideo.com/wap/resource/miguPC_client/comment.jsp?cid=639847238&mId=5101003837&pageIndex=1" frameborder="0" scrolling="no" width="270px" height="1048px"  id="frame1" ></iframe>
+</div>
+
+<script>
+    $("#div1").niceScroll({
+        cursorcolor: "#000",   //滚动条颜色
+        cursoropacitymax: 0.5, //滚动条透明度
+        touchbehavior: false,
+        cursorwidth:"10px",
+        cursorborder:"0",
+        cursorborderradius:"5px"
+    });
+</script>
+</body>
+</html>

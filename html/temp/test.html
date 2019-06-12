@@ -1,0 +1,487 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+</head>
+<!-- <link rel="stylesheet" href="./css/wms.css"> -->
+<style text="text/css">
+    body {
+        margin: 0;
+        padding: 0;
+        width: 278px;
+        height: 100%;
+        overflow:hidden;
+        background:#222222;
+    }
+    .div-a{
+        cursor:pointer;
+        color: #CCCCCC;
+    }
+
+    .menu-div-ul{
+        position:relative;
+        width:278px;
+        height:50px;
+        color:#FFFFFF;
+        background:#222222;
+    }
+    .menu-div-li-0{
+        position:absolute;
+        margin-left:30px;
+        top:10px;
+        display:inline;
+        font-family:'PingFangSC-Regular',"-apple-system","microsoft yahei";
+        font-size: 14px;
+        color: #CCCCCC;
+        letter-spacing: 0.17px;
+        background-image: url(./images/btn_playlist2x.png);
+    }
+    .menu-div-li-0:hover{
+        cursor:pointer;
+        background-image: url(./images/btn_playlist_hover2x.png);
+    }
+    .menu-div-li-0-click{
+        cursor:pointer;
+        background-image: url(./images/btn_playlist_pre2x.png);
+    }
+    .li-text{
+        position:absolute;
+        top:2px;
+        width:100%;
+        text-align:center;
+    }
+
+    .menu-div-li-1{
+        position:absolute;
+        margin-left:50px;
+        top:10px;
+        display:inline;
+        text-align:center;
+        font-family:'PingFangSC-Regular',"-apple-system","microsoft yahei";
+        font-size: 14px;
+        color: #CCCCCC;
+        letter-spacing: 0.17px;
+        background-image: url(./images/btn_opt2x.png);
+    }
+    .menu-div-li-2{
+        position:absolute;
+        top:10px;
+        display:inline;
+        text-align:center;
+        font-family:'PingFangSC-Regular',"-apple-system","microsoft yahei";
+        font-size: 14px;
+        color: #CCCCCC;
+        letter-spacing: 0.17px;
+        background-image: url(./images/btn_opt2x.png);
+        display:none;
+    }
+    .menu-div-li-1:hover,.menu-div-li-2:hover {
+        cursor:pointer;
+        background-image: url(./images/btn_opt_hover2x.png);
+    }
+
+    /* begin：直播-赛事日程表 #0B0B0C;*/
+    .vms-worldcup-div{
+        position:relative;
+        width:278px;
+        height:480px;
+        background: #1B1B1B;
+        display:none;
+        overflow-x:hidden;
+        overflow-y:auto;
+        scrollbar-arrow-color: #1B1B1B;
+        scrollbar-face-color: #1B1B1B;
+        scrollbar-3dlight-color: #1B1B1B;
+        scrollbar-highlight-color: #1B1B1B;
+        scrollbar-shadow-color: #1B1B1B;
+        scrollbar-darkshadow-color: #1B1B1B;
+        scrollbar-track-color: #1B1B1B;
+        scrollbar-base-color:#1B1B1B;
+    }
+
+    .vms-worldcup-refresh{
+        position:relative;
+        width:20px;
+        height:20px;
+        line-height:20px;
+        top:4px;
+        left:240px;
+        font-size:14px;
+    }
+
+    .vms-worldcup-item{
+        position:relative;
+        margin:10px;
+        width:258px;
+        height:84px;
+        background: #373737;
+        border-radius: 4px;
+    }
+
+    .vms-worldcup-item-hover{
+        box-shadow:0 0 1px 0px #21B4FF,
+        0 0 0px 1px #21B4FF;
+    }
+    .vms-worldcup-item-none{
+        box-shadow:0 0 0px 0px #21B4FF,
+        0 0 0px 0px #21B4FF;
+    }
+
+    .vms-pname{
+        position:absolute;
+        top:8px;
+        width:100%;
+        text-align:center;
+        color:#CCCCCC;
+        font-size:12px;
+        font-family:'PingFangSC-Semibold',"-apple-system","microsoft yahei";
+    }
+
+    .vms-time{
+        position:absolute;
+        left:109px;
+        top:29px;
+        width:41px;
+        height:17px;
+        color:#999999;
+        font-size:12px;
+        font-family:'PingFangSC-Regular',"-apple-system","microsoft yahei";
+    }
+
+    .vms-score{
+        position:absolute;
+        left:106px;
+        top:26px;
+        width:41px;
+        height:17px;
+        font-family: PingFangSC-Semibold,"-apple-system","microsoft yahei";;
+        font-size: 16px;
+        color: #FFFFFF;
+        text-align: center;
+    }
+
+    .vms-tname {
+        margin-top:4px;
+        color:#CCCCCC;
+        font-family: 'PingFangSC-Regular',"-apple-system","microsoft yahei";
+        font-size: 9.6px;
+        text-align:center;
+        text-overflow:ellipsis;
+        white-space:nowrap;
+    }
+
+    .vms-info-1{
+        position:absolute;
+        left:30px;
+        top:21px;
+        width:36px;
+    }
+    .vms-img1{
+        width:36px;
+        height:36px;
+    }
+
+    .vms-info-2{
+        position:absolute;
+        left:192px;
+        top:21px;
+        width:36px;
+    }
+    .vms-img2{
+        width:36px;
+        height:36px;
+    }
+    .vms-state .vms-img-state{
+        position:absolute;
+        left:106px;
+        top:55px;
+        width:42px;
+        height:18px;
+    }
+    .wms-elevation-img{
+        margin-left:10px;
+        display:none;
+    }
+    .wms-explanation{
+        width:272px;
+        display:none;
+    }
+    .wms-explanation-item{
+        box-shadow:0 0 1px 0px #343434,
+        0 0 0px 1px #343434;
+        border-radius: 4px;
+        width:136px;
+        height:40px;
+        text-align:center;
+        cursor:pointer;
+        font-family: PingFangSC-Medium,"-apple-system","microsoft yahei";
+        font-size: 10px;
+        color: #8B8B8B;
+        text-align: center;
+    }
+    .wms-explanation-item-focused{
+        background: #232323;
+        border-radius: 4px;
+        box-shadow:0 0 1px 0px #21B4FF,
+        0 0 0px 1px #21B4FF;
+    }
+    .expandedSpan1{
+        font-family: PingFangSC-Medium,"-apple-system","microsoft yahei";
+        font-size: 10px;
+        color: #8B8B8B;
+        text-align: center;
+    }
+    .expandedSpan1-focused{
+        font-family: PingFangSC-Medium,"-apple-system","microsoft yahei";
+        font-size: 10px;
+        color: #21B4FF;
+        text-align: center;
+    }
+    .expandedSpace{
+        display:block;
+        font-size: 4px;
+    }
+    .expandedSpan2{
+        font-family: PingFangSC-Regular,"-apple-system","microsoft yahei";
+        font-size: 8px;
+        color: #686868;
+        text-align: center;
+    }
+    .expandedSpan2-focused{
+        font-family: PingFangSC-Regular,"-apple-system","microsoft yahei";
+        font-size: 8px;
+        color: #1F80B1;
+        text-align: center;
+    }
+    /* end：直播-赛事日程表 */
+
+
+    /* begin: 互动 */
+
+    .more-opt-div{
+        position:relative;
+        width:278px;
+        height:488px;
+        background:	#1B1B1B;
+        display:none;
+    }
+    .more-opt-title{
+        position:absolute;
+        left:20px;
+        top:19px;
+        color:#FFFFFF;
+        font-size:14px;
+        font-family:'PingFangSC-Regular',"-apple-system","microsoft yahei";
+    }
+    .more-opt-bar{
+        position:absolute;
+        left:77px;
+        top:65px;
+        width:128px;
+        height:128px;
+    }
+    .more-opt-text1 {
+        position:absolute;
+        left:91px;
+        top:202px;
+        color:#A5A5A5;
+        font-size:14px;
+        font-family:'PingFangSC-Regular',"-apple-system","microsoft yahei";
+    }
+    .more-opt-text2{
+        position:absolute;
+        left:84px;
+        top:225px;
+        color:#A5A5A5;
+        font-size:14px;
+        font-family:'PingFangSC-Regular',"-apple-system","microsoft yahei";
+    }
+
+    /*end: 互动*/
+
+
+    /*begn:详情*/
+    .details-div{
+        position:relative;
+        width:278px;
+        height:480px;
+        background:	#1B1B1B;
+        display:none;
+        overflow-x:hidden;
+        overflow-y:auto;
+        scrollbar-arrow-color: #1B1B1B;
+        scrollbar-face-color: #1B1B1B;
+        scrollbar-3dlight-color: #1B1B1B;
+        scrollbar-highlight-color: #1B1B1B;
+        scrollbar-shadow-color: #1B1B1B;
+        scrollbar-darkshadow-color: #1B1B1B;
+        scrollbar-track-color: #1B1B1B;
+        scrollbar-base-color:#1B1B1B;
+    }
+    .details-div > img{
+        width:120px;
+        height:171px;
+    }
+    #video_name{
+        font-family: 'PingFangSC-Regular',"-apple-system","microsoft yahei";
+        font-size: 16px;
+        color: #CCCCCC;
+        letter-spacing: 0.7px;
+        text-align: left;
+    }
+    #video_director,#video_act,#video_area,#video_type,#video_details_lab,#video_details{
+        font-family: 'PingFangSC-Regular',"-apple-system","microsoft yahei";
+        font-size: 14px;
+        color: #999999;
+        letter-spacing: 0.61px;
+        text-align: left;
+        line-height:26px;
+        letter-spacing:1px;
+    }
+    /*end:详情*/
+</style>
+<script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="../js/rotate.js"></script>
+<script type="text/javascript" src="../js/divscroll.src.js"></script>
+
+
+    <script type="text/javascript">
+            setTimeout("changeUI(0)",0);
+</script>
+
+
+<body>
+<div class="menu-div-ul">
+    <div class="menu-div-li-0" style="left:10px;width:80px;height:26px;" onclick=""><div class="li-text">聊天室</div></div>
+    <!--<div class="menu-div-li-1" style="left:110px;width:60px;height:26px;" onclick="changeUI(1);"><div class="li-text">聊天室</div></div>-->
+    <div class="menu-div-li-2" style="left:190px;width:60px;height:26px;" onclick="changeUI(2);"><div class="li-text">详情</div></div>
+</div>
+<div id="vms-worldcup-div" class="vms-worldcup-div"></div>
+<div id="more-opt" class="more-opt-div">
+
+    <iframe src="talk.html?userId=111&userName=222&roomId=room2018110717304515_SR11"  width="100%" height="100%" name="topFrame"
+            scrolling="auto"  frameborder="0" id="topFrame"></iframe>
+</div>
+
+
+<script type="text/javascript">
+    var isLoadDetailsFromSevr = true;
+    jQuery.support.cors = true;
+    var g_ui_pos = 0;
+
+    $(".menu-div-li-0").hover(function(){
+        if(g_ui_pos != 0){
+            $(this).css("background-image","url(./images/btn_playlist_hover2x.png)");
+        }
+    },function(){
+        if(g_ui_pos != 0)
+            $(this).css("background-image","url(./images/btn_playlist2x.png)");
+    });
+    $(".menu-div-li-1").hover(function(){
+        if(g_ui_pos != 1){
+            $(this).css("background-image","url(./images/btn_opt_hover2x.png)");
+        }
+    },function(){
+        if(g_ui_pos != 1)
+            $(this).css("background-image","url(./images/btn_opt2x.png)");
+    });
+
+    $(".menu-div-li-2").hover(function(){
+        if(g_ui_pos != 2){
+            $(this).css("background-image","url(./images/btn_opt_hover2x.png)");
+        }
+    },function(){
+        if(g_ui_pos != 2)
+            $(this).css("background-image","url(./images/btn_opt2x.png)");
+    });
+
+     var userId="12312312";
+    var userName="匡兴";
+    var roomId = "room2018110717304515_SR11";
+    function changeUI(pos){
+
+        g_ui_pos = pos;
+        if(pos == 0){//播放列表UI
+            var url =encodeURI("talk.html?userId="+userId+"&userName="+userName+"&roomId="+roomId);
+            //alert("url"+url);
+            $("#topFrame").attr("src",url);
+            $("#vms-worldcup-div").hide();
+            $(".vms-worldcup-div").getNiceScroll().hide();
+            $("#more-opt").show();
+            $("#details-video").hide()
+            $(".more-opt-div").getNiceScroll().show();
+            $("#topFrame").getNiceScroll().resize();
+//            $("#vms-worldcup-div").show();
+//            $(".vms-worldcup-div").getNiceScroll().show();
+//            $("#more-opt").hide();
+//            $("#details-video").hide();
+//            $(".details-div").getNiceScroll().hide();
+//            //if(!isLogin){
+//            //ToLogin();
+//            //};
+        }else if(pos == 1){//互动UI
+            var url =encodeURI("talk.html?userId="+userId+"&userName="+userName+"&roomId="+roomId);
+            //alert("url"+url);
+            $("#topFrame").attr("src",url);
+            $("#vms-worldcup-div").hide();
+            $(".vms-worldcup-div").getNiceScroll().hide();
+            $("#more-opt").show();
+            $("#details-video").hide()
+            $(".more-opt-div").getNiceScroll().show();
+            $("#topFrame").getNiceScroll().resize();
+
+        }else if(pos == 2){//详情
+            $("#vms-worldcup-div").hide();
+            $(".vms-worldcup-div").getNiceScroll().hide();
+            $("#more-opt").hide();
+            $("#details-video").show();
+            $(".details-div").getNiceScroll().show();
+            if(isLoadDetailsFromSevr == true)
+                load_vms_worldcup_details(g_detail_url+"/"+c_mgdbId);
+        }
+    }
+
+</script>
+
+
+
+<script type="text/javascript">
+
+    //设置滚动条
+    $(".vms-worldcup-div").niceScroll({
+        cursorcolor:"#3B3B3B",
+        cursorborder: "#3B3B3B",
+        cursorwidth: "8px"
+    });
+    $(".details-div").niceScroll({
+        cursorcolor:"#3B3B3B",
+        cursorborder: "#3B3B3B",
+        cursorwidth: "8px"
+    });
+
+    function resizeFN() {
+        var wheight = $(window).height();
+        if(wheight == 0){
+            return;
+        }
+        $(".vms-worldcup-div").animate({height:wheight-55},"0",function(){
+            $(".vms-worldcup-div").getNiceScroll().resize();
+            $("#iframe-content").getNiceScroll().resize();
+        });
+        $(".details-div").animate({height:wheight-55},"0",function(){
+            $(".details-div").getNiceScroll().resize();
+        });
+        $(".more-opt-div").animate({height:wheight-55},"0",function(){
+            $(".more-opt-div").getNiceScroll().resize();
+            $("#topFrame").getNiceScroll().resize();
+        });
+
+    }
+    $(window).resize(resizeFN);
+    resizeFN();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>HOME</title>
+<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="js/json2.js"></script>
+<script type="text/javascript" src="js/init.js"></script>
+</head>
+<style text="text/css">
+body {
+    margin: 0;
+    padding: 0;
+    width: 278px;
+    height: 100%;
+	background:	#1B1B1B;
+	overflow:hidden;
+}
+</style>
+<script type="text/javascript">
+jQuery.support.cors = true;
+function InitData(cid,isLive){
+	if(isLive==0){
+		window.location.href="vodpage.html?playcid="+cid;
+	}else{
+		window.location.href="WMSPlayerDetails.html?cid="+cid;
+	}
+}
+
+function playAD(){
+	//window.external.ShowMiniEPG("loading.html",0);
+	//window.location.href ="localmedia.html";
+	//migu_app.Play("2018世界杯官方宣传片：诸神之战众星蓄势待发", 1, 2,"http://117.131.17.50/depository_yf/asset/zhengshi/1002/056/650/1002056650/media/1002056650_1003920406_591.ts", 1,0);				
+	migu_app.SetConfig("localmedia_init","");
+}
+
+function Login(){
+	LoginStatus(0);
+}
+setTimeout(function(){
+	updateUserData();	
+},2000);
+setTimeout(function(){
+	//saveTeminal("");
+	reportData(1,"",1);
+},3000);
+</script>
+</html>

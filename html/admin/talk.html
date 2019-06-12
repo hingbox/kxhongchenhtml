@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>聊天室</title>
+    <script
+            src="https://code.jquery.com/jquery-2.2.4.js"
+            integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
+            crossorigin="anonymous"></script>
+</head>
+<body>
+<input id="message" style="width:100%;">
+
+<!--<script type="text/javascript">-->
+    <!--window.onload = function() {-->
+        <!--var nick = prompt("请输入你的昵称！");-->
+        <!--var input = document.getElementById('message');-->
+
+        <!--while(!nick) {-->
+            <!--nick = prompt("请输入你的昵称！");-->
+        <!--}-->
+
+        <!--input.focus();-->
+
+        <!--// http://10.224.226.112:8080/app/#/hello-->
+
+        <!--// var socket = new WebSocket("ws://localhost:8080/");-->
+        <!--var socket = new WebSocket("ws://chatpush.miguvideo.com:9100/chat_ws/");-->
+
+        <!--socket.onmessage = function(event) {-->
+            <!--var msg = event.data;-->
+
+            <!--var node = document.createTextNode(msg);-->
+            <!--var div = document.createElement("div");-->
+            <!--div.appendChild(node);-->
+            <!--document.body.insertBefore(div, input);-->
+            <!--input.scrollIntoView();-->
+        <!--}-->
+
+        <!--input.onchange = function() {-->
+            <!--var msg = nick + ":" + input.value;-->
+            <!--socket.send(this,msg);-->
+            <!--input.value = "";-->
+            <!--input.focus();-->
+        <!--}-->
+
+    <!--}-->
+<!--</script>-->
+<script>
+    //获取ws
+    $.ajax({
+        type: "get",
+        url:"http://183.192.162.101:8083/chatlbs/enterRoom?userName=kk&userId=970100008&type=2&level=105&roomNo=room2018110703000090_SR11",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+//        beforeSend: function (XMLHttpRequest) {
+//            XMLHttpRequest.setRequestHeader("userId", "970100008");
+//            XMLHttpRequest.setRequestHeader("userToken", "7191E06E94B71F975565");
+//            XMLHttpRequest.setRequestHeader("SDKCEId", "79acd784-cbbb-4cae-8778-8723e001164b");
+//            XMLHttpRequest.setRequestHeader("clientId", "pc");
+//        },
+        success: function (data) {
+            alert(data);
+        },error:function(error){
+            console.log(error);
+        }
+    });
+    //创建Socket示例
+    var socket= new WebSocket('ws://chatpush.miguvideo.com:9100/chat_ws/111');
+    // 打开Socket
+    socket.onopen = function(event) {
+        var params= {
+            isWebSocket: true,
+            msgType: 15,
+            roomNo: 'room2018110703000090_SR11',
+            userId: '970100008',
+            id: '970100008',
+            userName: 'kk',
+            level: 1,
+            type: 103,
+            profile: '{avatar: ""}',
+            plat: 'pc'
+        }
+        // 发送一个初始化消息
+        socket.send(JSON.stringify(params));
+
+        // 监听消息
+        socket.onmessage = function(event) {
+            console.log('Client received a message',event);
+        };
+
+        // 监听Socket的关闭
+        socket.onclose = function(event) {
+            console.log('Client notified socket has closed',event);
+        };
+
+        // 关闭Socket....
+        //socket.close()
+    };
+
+//    var ws =  = this.ws = n = new WebSocket('ws://://chatpush.miguvideo.com:9100/chat_ws/' + r +  + roomId.split("_"("_")[1])
+//
+//    )
+//
+//    ws.onopen = ( = (event) => {
+//    {
+//        ws.send(JSO(nd(JSON.stringify(thi(fy(this.liveMsg))
+//        t))
+//        timer = setInterval(() => {
+//        {
+//            ws.send(JSO(nd(JSON.stringify({"m({"msgTest":"[]"}))
+//            },60000)
+//        };
+//
+//        ;
+//
+//        ws.onmessage = ( = (event) => {
+//            var data =  = this.jsonParse(eve(se(event.data)
+//        if)
+//            if (f (this.isEmptyObj(daj(data)) return
+//        if (f (data.roomNo !=  != roomId) return
+//
+//        n
+//
+//        this.emptyCount = t = 0
+//
+//        0
+//
+//        this.totalcount = t =  = this.totalAudienceenceCount =  = data.totalAudienceenceCount
+//        nt
+//        console.log(dat(data)
+//        if (f (data.sysNotify) {
+//        ) {
+//        if (f (data.sysNotify[0].[0].type == 13) { // 直播结束
+//            结束
+//            this.isend = t = true
+//        }
+//// // this.pushEnterRoomRoomUser(er(data.sysNotify);
+//    });
+//    }
+//
+//        if (f (data.msg) {
+//        ) {
+//        {
+//            this.pushMsgItem(dem(em(data.msg)
+//        }
+//    )
+//    }
+//    };
+//
+//    ;
+//
+//    ws.onclose = f = function(event) {
+//        clearInterval(timer)
+//// // console.log('已关('已关闭');
+//    }
+</script>
+</body>
+</html>

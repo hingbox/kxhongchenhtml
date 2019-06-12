@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>pause</title>
+<style type="text/css">
+body{
+    margin:0;
+    padding:0;
+    width:100%;
+	height:100%;	
+	background-color: #000000;
+}
+.main{
+	position:relative;
+	width:800px;
+	height:460px;	
+}
+.content{
+	position:relative;
+	width:430px;
+	height:284px;
+	left:185px;
+	top:90px;
+	display:none;
+}
+.AD{
+	width:100%;
+	height:100%;
+}
+.Close{
+	position:absolute;
+	width:20px;
+	height:20px;
+	right:14px;
+	top:14px;
+	cursor:pointer;
+}
+</style>
+<script type="text/javascript" src="./js/jquery-1.9.1.min.js"></script>
+</head>
+<body>
+	<div id="main" class="main">
+	<div id="content" class="content">
+		<img class="AD" src="./pic/bg_pause2x.png"/>
+		<img class="Close" src="./pic/close2x.png" onclick="closeAD()">		
+	</div>
+	<div style="margin-top:110px;margin-left:0px;cursor:pointer;" id="play"><img src="pic/play.svg" style="cursor:pointer;" width="48px"height="48px" onclick="play()"/></div>
+	</div>
+</body>
+<script type="text/javascript">
+function closeAD(){
+	//migu_app.ShowMiniEPG(url);
+	//migu_app.CloseMiniEPG();
+	$("#content").hide();
+}
+function play(){
+	migu_app.Play();
+	//migu_app.CloseMiniEPG();
+}
+function pageCenter(){
+	//alert(document.documentElement.clientHeight);
+
+    //alert(document.documentElement.clientWidth);
+	var iWidth=430; //弹出窗口的宽度;
+    var iHeight=284; //弹出窗口的高度;
+    var iTop = (document.documentElement.clientHeight-iHeight)/2; //获得窗口的垂直位置;
+    var iLeft = (document.documentElement.clientWidth-iWidth)/2; //获得窗口的水平位置;
+    $("#content").height(iHeight)
+        .width(iWidth)
+        .css('position','absolute')
+        .css("top",iTop)
+        .css("left",iLeft);
+		
+	var iWidth1=48; //弹出窗口的宽度;
+    var iHeight1=48; //弹出窗口的高度;
+    var iTop1 = document.documentElement.clientHeight-180; //获得窗口的垂直位置;
+    var iLeft1 = 10; //获得窗口的水平位置;
+    $("#play").height(iHeight1)
+        .width(iWidth1)
+        .css('position','absolute')
+        .css("top",iTop1)
+        .css("left",iLeft1);
+}
+$(document).ready(pageCenter);
+
+//最大化，最小化窗体发生变化时
+$(window).resize(function() {
+	pageCenter();
+});
+</script>
+</html>

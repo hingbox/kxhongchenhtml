@@ -1,0 +1,1632 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>咪咕视频</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+<script type="text/javascript" src="js/init.js"></script>
+</head>
+<!-- <link rel="stylesheet" href="./css/wms.css"> -->
+<style text="text/css">
+body {
+    margin: 0;
+    padding: 0;
+    width: 278px;
+    height: 100%;
+	overflow:hidden;
+	background:#222222;	
+}
+.div-a{
+	cursor:pointer;
+	color: #CCCCCC;
+}
+
+.menu-div-ul{
+	position:relative;
+	width:278px;
+	height:50px;
+	color:#FFFFFF;
+	background:#222222;
+}
+.menu-div-li-0{
+	position:absolute;
+	margin-left:30px;
+	top:10px;
+	display:inline;
+	font-family:'PingFangSC-Regular',"-apple-system","microsoft yahei";
+	font-size: 14px;
+	color: #CCCCCC;
+	letter-spacing: 0.17px;	
+	background-image: url(./images/btn_playlist2x.png);
+}
+.menu-div-li-0:hover{
+	cursor:pointer;
+	background-image: url(./images/btn_playlist_hover2x.png);
+}
+.menu-div-li-0-click{
+	cursor:pointer;
+	background-image: url(./images/btn_playlist_pre2x.png);
+}
+.li-text{
+	position:absolute;
+	top:2px;
+	width:100%;
+	text-align:center;
+}
+
+.menu-div-li-1{
+	position:absolute;
+	margin-left:50px;
+	top:10px;
+	display:inline;
+	text-align:center;
+	font-family:'PingFangSC-Regular',"-apple-system","microsoft yahei";
+	font-size: 14px;
+	color: #CCCCCC;
+	letter-spacing: 0.17px;
+	background-image: url(./images/btn_opt2x.png);
+}
+.menu-div-li-2{
+	position:absolute;
+	top:10px;
+	display:inline;
+	text-align:center;
+	font-family:'PingFangSC-Regular',"-apple-system","microsoft yahei";
+	font-size: 14px;
+	color: #CCCCCC;
+	letter-spacing: 0.17px;
+	background-image: url(./images/btn_opt2x.png);
+	display:none;
+}
+.menu-div-li-1:hover,.menu-div-li-2:hover {
+	cursor:pointer;
+	background-image: url(./images/btn_opt_hover2x.png);
+}
+
+/* begin：直播-赛事日程表 #0B0B0C;*/
+.vms-worldcup-div{
+	position:relative;
+	width:278px;
+    height:480px;
+	background: #1B1B1B;
+	display:none;	
+	overflow-x:hidden;
+	overflow-y:auto;
+	scrollbar-arrow-color: #1B1B1B; 
+    scrollbar-face-color: #1B1B1B; 
+    scrollbar-3dlight-color: #1B1B1B; 
+    scrollbar-highlight-color: #1B1B1B;
+    scrollbar-shadow-color: #1B1B1B;
+    scrollbar-darkshadow-color: #1B1B1B;   
+    scrollbar-track-color: #1B1B1B; 
+    scrollbar-base-color:#1B1B1B; 
+}
+
+.vms-worldcup-refresh{
+	position:relative;
+	width:20px;
+	height:20px;
+	line-height:20px;
+	top:4px;
+	left:240px;
+	font-size:14px;
+}
+
+.vms-worldcup-item{
+	position:relative;
+	margin:10px;
+	width:258px;
+	height:84px;
+	background: #373737;
+	border-radius: 4px;
+}
+
+.vms-worldcup-item-hover{
+	box-shadow:0 0 1px 0px #21B4FF,
+    0 0 0px 1px #21B4FF;
+}
+.vms-worldcup-item-none{
+	box-shadow:0 0 0px 0px #21B4FF,
+    0 0 0px 0px #21B4FF;
+}
+
+.vms-pname{
+	position:absolute;	
+	top:8px;
+	width:100%;
+	text-align:center;
+	color:#CCCCCC;
+	font-size:12px;
+	font-family:'PingFangSC-Semibold',"-apple-system","microsoft yahei";	
+}
+
+.vms-time{
+	position:absolute;
+	left:109px;
+	top:29px;
+	width:41px;
+	height:17px; 
+	color:#999999;
+	font-size:12px;
+	font-family:'PingFangSC-Regular',"-apple-system","microsoft yahei";
+}
+
+.vms-score{
+	position:absolute;
+	left:106px;
+	top:26px;
+	width:41px;
+	height:17px;
+	font-family: PingFangSC-Semibold,"-apple-system","microsoft yahei";;
+	font-size: 16px;
+	color: #FFFFFF;
+	text-align: center;
+}
+
+.vms-tname {
+	margin-top:4px;
+	color:#CCCCCC;
+	font-family: 'PingFangSC-Regular',"-apple-system","microsoft yahei";
+	font-size: 9.6px;
+	text-align:center;
+	text-overflow:ellipsis;
+    white-space:nowrap;
+}
+
+.vms-info-1{
+	position:absolute;
+	left:30px;
+	top:21px;
+	width:36px;
+}
+.vms-img1{
+	width:36px;
+	height:36px;
+}
+
+.vms-info-2{
+	position:absolute;
+	left:192px;
+	top:21px;
+	width:36px;
+}
+.vms-img2{
+	width:36px;
+	height:36px;
+}
+.vms-state .vms-img-state{
+	position:absolute;
+	left:106px;
+	top:55px;
+	width:42px;
+	height:18px;
+}
+.wms-elevation-img{
+	margin-left:10px;
+	display:none;
+}
+.wms-explanation{
+	width:272px;
+	display:none;
+}
+.wms-explanation-item{
+	box-shadow:0 0 1px 0px #343434,
+    0 0 0px 1px #343434;
+	border-radius: 4px;
+	width:136px;
+	height:40px;
+	text-align:center;
+	cursor:pointer;
+	font-family: PingFangSC-Medium,"-apple-system","microsoft yahei";
+	font-size: 10px;
+	color: #8B8B8B;
+	text-align: center;
+}
+.wms-explanation-item-focused{
+	background: #232323;
+	border-radius: 4px;
+	box-shadow:0 0 1px 0px #21B4FF,
+    0 0 0px 1px #21B4FF;
+}
+.expandedSpan1{
+	font-family: PingFangSC-Medium,"-apple-system","microsoft yahei";
+	font-size: 10px;
+	color: #8B8B8B;
+	text-align: center;
+}
+.expandedSpan1-focused{
+	font-family: PingFangSC-Medium,"-apple-system","microsoft yahei";
+	font-size: 10px;
+	color: #21B4FF;
+	text-align: center;
+}
+.expandedSpace{
+	display:block;
+	font-size: 4px;
+}
+.expandedSpan2{
+	font-family: PingFangSC-Regular,"-apple-system","microsoft yahei";
+	font-size: 8px;
+	color: #686868;
+	text-align: center;
+}
+.expandedSpan2-focused{
+	font-family: PingFangSC-Regular,"-apple-system","microsoft yahei";
+	font-size: 8px;
+	color: #1F80B1;
+	text-align: center;
+}
+/* end：直播-赛事日程表 */
+
+
+/* begin: 互动 */
+
+.more-opt-div{
+	position:relative;
+	width:278px;
+    height:488px;
+	background:	#1B1B1B;
+	display:none;
+}
+.more-opt-title{
+	position:absolute;
+	left:20px;
+	top:19px;
+	color:#FFFFFF;
+	font-size:14px;
+	font-family:'PingFangSC-Regular',"-apple-system","microsoft yahei";
+}
+.more-opt-bar{
+	position:absolute;
+	left:77px;
+	top:65px;
+	width:128px;
+    height:128px;
+}
+.more-opt-text1 {
+	position:absolute;
+	left:91px;
+	top:202px;
+	color:#A5A5A5;
+	font-size:14px;
+	font-family:'PingFangSC-Regular',"-apple-system","microsoft yahei";
+}
+.more-opt-text2{
+	position:absolute;
+	left:84px;
+	top:225px;
+	color:#A5A5A5;
+	font-size:14px;
+	font-family:'PingFangSC-Regular',"-apple-system","microsoft yahei";
+}
+
+/*end: 互动*/
+
+
+/*begn:详情*/
+.details-div{
+	position:relative;
+	width:278px;
+    height:480px;
+	background:	#1B1B1B;
+	display:none;
+	overflow-x:hidden;
+	overflow-y:auto;
+	scrollbar-arrow-color: #1B1B1B; 
+    scrollbar-face-color: #1B1B1B; 
+    scrollbar-3dlight-color: #1B1B1B; 
+    scrollbar-highlight-color: #1B1B1B; 
+    scrollbar-shadow-color: #1B1B1B; 
+    scrollbar-darkshadow-color: #1B1B1B;
+    scrollbar-track-color: #1B1B1B; 
+    scrollbar-base-color:#1B1B1B;
+}
+.details-div > img{
+	width:120px;
+    height:171px;
+}
+#video_name{
+	font-family: 'PingFangSC-Regular',"-apple-system","microsoft yahei";
+	font-size: 16px;
+	color: #CCCCCC;
+	letter-spacing: 0.7px;
+	text-align: left;
+}
+#video_director,#video_act,#video_area,#video_type,#video_details_lab,#video_details{
+	font-family: 'PingFangSC-Regular',"-apple-system","microsoft yahei";
+	font-size: 14px;
+	color: #999999;
+	letter-spacing: 0.61px;
+	text-align: left;
+	line-height:26px;
+	letter-spacing:1px; 
+}
+/*end:详情*/
+</style>
+<script type="text/javascript" src="./js/crypto-js.js"></script>
+<script type="text/javascript" src="./js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="./js/rotate.js"></script>
+<script type="text/javascript" src="./js/divscroll.src.js"></script>
+<script type="text/javascript" src="./js/utils.js"></script>
+<script type="text/javascript" src="./js/json2.js"></script>
+<script type="text/javascript">
+
+document.oncontextmenu = function(){
+    event.returnValue = false;
+	return false;
+};
+
+document.onkeydown =function() {
+    if (event.keyCode == 116) {
+        event.keyCode = 0;
+        event.cancelBubble = true;
+        return false;
+    }
+}
+
+function formatDateTime(inputTime) {    
+    var date = new Date(inputTime);  
+    var y = date.getFullYear();    
+    var m = date.getMonth() + 1;    
+    m = m < 10 ? ('0' + m) : m;    
+    var d = date.getDate();    
+    d = d < 10 ? ('0' + d) : d;    
+    var h = date.getHours();  
+    h = h < 10 ? ('0' + h) : h;  
+    var minute = date.getMinutes();  
+    var second = date.getSeconds();  
+    minute = minute < 10 ? ('0' + minute) : minute;    
+    second = second < 10 ? ('0' + second) : second;   
+    return y + '-' + m + '-' + d+' '+h+':'+minute+':'+second;    
+};
+//$(document).ready(
+//		function() {
+//			//$(".content").niceScroll({cursorcolor:"#00F"});
+//			$(".content").getNiceScroll().resize();
+//		}
+//);
+
+function getUserInfo(){return migu_app.getLoginInfo();}
+//eval(function(p,a,c,k,e,d){e=function(c){return(c<a?"":e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--)d[e(c)]=k[c]||e(c);k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1;};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p;}('2 1(){0 5.4.3()}',6,6,'return|getUserInfo|function|getLoginInfo|external|window'.split('|'),0,{}))
+
+function initParams(url,isReload){
+	params = $.parseParams(url.split('?')[1] || '');	
+	c_mgdbId = params.mgdbId || "";
+	c_pID = params.cid || "";
+	noReLogin = params.noReLogin || "";
+	c_rateType = params.rateType || "";
+	noReAlert = params.noReAlert || "";
+}
+
+eval(function(p,a,c,k,e,d){e=function(c){return(c<a?"":e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--)d[e(c)]=k[c]||e(c);k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1;};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p;}('2 9="3://4.0.1/6-5/7/8";2 c="3://4.0.1/6-5/a/b";',13,13,'miguvideo|com|var|http|v|worldcup|vms|program|programList|g_list_url|basicData|getBasicData|g_detail_url'.split('|'),0,{}))
+//eval(function(p,a,c,k,e,d){e=function(c){return(c<a?"":e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--)d[e(c)]=k[c]||e(c);k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1;};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p;}('3 4="2://0.1.5/9/a/8/6.7";',11,11,'www|miguvideo|https|var|playOrder|com|payOrder|jsp|miguPC_client|wap|resource'.split('|'),0,{}))
+eval(function(p,a,c,k,e,d){e=function(c){return(c<a?"":e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--)d[e(c)]=k[c]||e(c);k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1;};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p;}('3 4="1://2.7.8/0/5/6/0";',9,9,'playurl|http|pc|var|playUrl|v3|play|miguvideo|com'.split('|'),0,{}))
+var params = {};
+var c_mgdbId = params.mgdbId || "";
+var c_pID = params.pID || "";
+var noReLogin = params.noReLogin || "";
+var noReAlert = params.noReAlert || "";
+var c_rateType = params.rateType || "";
+var isWatchFirstTV = false;
+var playOrder = "http://www.miguvideo.com/mgs/website/prd/buyVip.html";
+var LIVESOURCE="http://m.miguvideo.com/mgs/hybrid/ppsport/prd/rankList.html?seasonId=1215&competitionId=1&platform=PLATFORM";//WORLDCUP 世界杯
+
+initParams(window.location.href,true);
+
+
+
+</script>
+
+<script>
+	setTimeout("changeUI(0)",0);//自动执行聊天室事件
+</script>
+<body>
+<div class="menu-div-ul">
+	<div class="menu-div-li-0" style="left:10px;width:80px;height:26px;" onclick=""><div class="li-text">聊天室</div></div>
+	<!--<div class="menu-div-li-1" style="left:110px;width:60px;height:26px;" onclick="changeUI(1);"><div class="li-text">聊天室</div></div>-->
+	<div class="menu-div-li-2" style="left:190px;width:60px;height:26px;" onclick="changeUI(2);"><div class="li-text">详情</div></div>
+</div>
+<div id="vms-worldcup-div" class="vms-worldcup-div"></div>
+<div id="more-opt" class="more-opt-div">
+	<!--<div class="more-opt-title">想参与互动评论吗，扫码下载咪咕视频</div>-->
+	<!--<img class="more-opt-bar" src="./images/migubar2x.png"/>-->
+	<!--<div class="more-opt-text1">下载咪咕视频APP</div>-->
+	<!--<div class="more-opt-text2"></div>-->
+	<!--引用外部的html页面
+			width外部页面的宽度,
+			height外部页面的高度,
+			scrolling是否有滚动条,
+			noresize 属性规定用户无法调整框架的大小,
+			frameborder是否有边框-->
+
+	<iframe src=""  width="100%" height="100%" name="topFrame"
+			scrolling="auto"  frameborder="0" id="topFrame"></iframe>
+</div>
+<div id="details-video" class="details-div">
+	<table border=0 cellSpacing=0 cellPadding=0 style="margin-left:20px; margin-top:17px">
+		<tr><td height="120px"><img id = "video_poster" onerror="imgError('video_poster')" src="" width="120px" height="171px" border="0" /></td></tr>
+	</table>
+	<table border=0 cellSpacing=0 cellPadding=0 style="margin-left:20px; margin-top:13px" width="242px">
+		<tr id="video_name"><td height="22px"></td></tr>
+	</table>
+	<table border=0 cellSpacing=0 cellPadding=0 style="margin-left:20px; margin-top:6px" width="242px">
+		<tr id="video_director"><td width="50">导演:</td><td></td></tr>
+		<tr id="video_act"><td>主演:</td><td></td></tr>
+		<tr id="video_type"><td>类型:</td><td></td></tr>
+		<tr id="video_area"><td>区域:</td><td></td></tr>
+		<tr id="video_details_lab"><td colspan=2>节目详情:</td></tr>
+		<tr id="video_details" ><td colspan=2></td></tr>
+	</table>
+</div>
+
+<script type="text/javascript">
+var isLoadDetailsFromSevr = true;
+jQuery.support.cors = true;
+var g_ui_pos = 0;
+
+$(".menu-div-li-0").hover(function(){
+				if(g_ui_pos != 0){					
+					$(this).css("background-image","url(./images/btn_playlist_hover2x.png)");
+				}
+			},function(){
+				if(g_ui_pos != 0)
+					$(this).css("background-image","url(./images/btn_playlist2x.png)");
+			});
+$(".menu-div-li-1").hover(function(){
+				if(g_ui_pos != 1){					
+					$(this).css("background-image","url(./images/btn_opt_hover2x.png)");
+				}
+			},function(){
+				if(g_ui_pos != 1)
+					$(this).css("background-image","url(./images/btn_opt2x.png)");
+			});
+			
+$(".menu-div-li-2").hover(function(){
+				if(g_ui_pos != 2){					
+					$(this).css("background-image","url(./images/btn_opt_hover2x.png)");
+				}
+			},function(){
+				if(g_ui_pos != 2)
+					$(this).css("background-image","url(./images/btn_opt2x.png)");
+			});
+
+
+function changeUI(pos){
+	if(pos == 0){
+		//$('.menu-div-li-0').removeClass('menu-div-li-0-hover').unbind('hover').addClass('.menu-div-li-0-click');
+		$('.menu-div-li-0').css("background-image","url(./images/btn_playlist_pre2x.png)");	
+		$('.menu-div-li-1').css("background-image","url(./images/btn_opt2x.png)");
+		$('.menu-div-li-2').css("background-image","url(./images/btn_opt2x.png)");
+		
+		$('.menu-div-li-0').css("color","#21B4FF");
+		$('.menu-div-li-1').css("color","#CCCCCC");
+		$('.menu-div-li-2').css("color","#CCCCCC");
+		
+	}else if(pos == 1){
+		$('.menu-div-li-0').css("background-image","url(./images/btn_playlist2x.png)");		
+		$('.menu-div-li-1').css("background-image","url(./images/btn_opt_pre2x.png)");
+		$('.menu-div-li-2').css("background-image","url(./images/btn_opt2x.png)");
+		
+		$('.menu-div-li-1').css("color","#21B4FF");
+		$('.menu-div-li-0').css("color","#CCCCCC");
+		$('.menu-div-li-2').css("color","#CCCCCC");
+	}else if(pos == 2){
+		$('.menu-div-li-0').css("background-image","url(./images/btn_playlist2x.png)");
+		$('.menu-div-li-1').css("background-image","url(./images/btn_opt2x.png)");
+		$('.menu-div-li-2').css("background-image","url(./images/btn_opt_pre2x.png)");
+		
+		$('.menu-div-li-2').css("color","#21B4FF");
+		$('.menu-div-li-0').css("color","#CCCCCC");
+		$('.menu-div-li-1').css("color","#CCCCCC");
+	}
+	g_ui_pos = pos;
+	if(pos == 0){//播放列表UI
+		var infoString = getUserInfo();//获取用户信息  userId,userName
+		var roomId = migu_app.getConfig("roomId");//获取房间号
+		var userId="";
+		var userName="";
+		if(infoString){
+			infoString = infoString.replace(/'/g, "\"");
+			var info = JSON.parse(infoString);
+
+			if(info){
+				userId = info.userId;
+				userName = info.userName;
+				if (userName == undefined || userName == "") {
+					userName="咪咕用户";
+				}
+			}
+		}
+		//alert("userId"+userId+"userName"+userName)
+		//$("#topFrame").attr("src","talk.html?userId="+userId+"&userName="+userName+"&roomId="+roomId);
+		var url =encodeURI("talk.html?userId="+userId+"&userName="+userName+"&roomId="+roomId);
+		$("#topFrame").attr("src",url);
+		$("#vms-worldcup-div").hide();
+		$(".vms-worldcup-div").getNiceScroll().hide();
+		$("#more-opt").show();
+		$("#details-video").hide()
+		$(".more-opt-div").getNiceScroll().show();
+		$("#topFrame").getNiceScroll().resize();
+//		$("#vms-worldcup-div").show();
+//		$(".vms-worldcup-div").getNiceScroll().show();
+//		$("#more-opt").hide();
+//		$("#details-video").hide();
+//		$(".details-div").getNiceScroll().hide();
+//		//if(!isLogin){
+//			//ToLogin();
+//		//};
+	}else if(pos == 1){//互动UI
+		var infoString = getUserInfo();//获取用户信息  userId,userName
+		var roomId = migu_app.getConfig("roomId");//获取房间号
+		var userId="";
+		var userName="";
+		if(infoString){
+			infoString = infoString.replace(/'/g, "\"");
+			var info = JSON.parse(infoString);
+
+			if(info){
+				userId = info.userId;
+				userName = info.userName;
+				if (userName == undefined || userName == "") {
+					userName="咪咕用户";
+				}
+			}
+		}
+		//alert("userId"+userId+"userName"+userName)
+		//$("#topFrame").attr("src","talk.html?userId="+userId+"&userName="+userName+"&roomId="+roomId);
+		var url =encodeURI("talk.html?userId="+userId+"&userName="+userName+"&roomId="+roomId);
+		$("#topFrame").attr("src",url);
+		$("#vms-worldcup-div").hide();
+		$(".vms-worldcup-div").getNiceScroll().hide();
+		$("#more-opt").show();
+		$("#details-video").hide()
+		$(".more-opt-div").getNiceScroll().show();
+		$("#topFrame").getNiceScroll().resize();
+
+	}else if(pos == 2){//详情
+		$("#vms-worldcup-div").hide();		
+		$(".vms-worldcup-div").getNiceScroll().hide();
+		$("#more-opt").hide();
+		$("#details-video").show();
+		$(".details-div").getNiceScroll().show();
+		if(isLoadDetailsFromSevr == true)
+			load_vms_worldcup_details(g_detail_url+"/"+c_mgdbId);
+	}
+}
+
+
+/**begin:*********************************************************/
+var WMSDReqLocked = false;
+var ajaxWMSObj = null;
+
+function load_vms_worldcup_programList(url){
+	
+	if(LIVESOURCE!=""){
+		
+		var items = "<div class='vms-worldcup-refresh'><div class='div-a' onclick='refresh_vms_worldcup_programList()'><img src='./images/icon-refresh2x.png' title='刷新' style='vertical-align:middle;'/></div></div>";
+		items +="<div style='margin-top: 10px'></div><iframe id='iframe-content' src=\'"+LIVESOURCE+"\' height='100%' width='270px' scrolling='no'/>";
+		$("#vms-worldcup-div").html(items);
+		$("#vms-worldcup-div").show();
+		//$("#vms-worldcup-div").css("overflow-x:hidden");	
+		$(".vms-worldcup-div").getNiceScroll().resize();	
+		$("#iframe-content").getNiceScroll().resize();	
+		$('.vms-worldcup-refresh').animate({rotate: '360'}, 500);
+
+		setTimeout(function(){
+			changeUI(0);
+		},500);
+		
+	}
+	else{
+	if(WMSDReqLocked){//locked return
+		return;
+	}
+	WMSDReqLocked = true;//lock requet
+	if(ajaxWMSObj != null){
+		ajaxWMSObj.abort();
+		ajaxWMSObj = null;
+	}
+	ajaxWMSObj = $.ajax({
+			url:url,			
+			async:true,
+			cache:false,
+			success: function(data, textStatus, jqXHR ){
+				parseWMSWroldCupProgramList(data);
+			},
+			error:function(qXHR, textStatus, errorThrown){
+				parseWMSWroldCupProgramList(null);
+			},
+			complete:function(){//run after [success or error]
+				WMSDReqLocked = false;//release lock
+			}
+	});
+}
+}
+function refresh_vms_worldcup_programList(){
+	if(WMSDReqLocked === false)
+		load_vms_worldcup_programList(g_list_url);
+}
+
+function parseWMSWroldCupProgramList(programList){
+	
+	if(g_ui_pos == 0){
+		$("#vms-worldcup-div").show();
+	}
+	
+	$("#vms-worldcup-div").empty();
+	
+	var items = "<div class='vms-worldcup-refresh'><div class='div-a' onclick='refresh_vms_worldcup_programList()'><img src='./images/icon-refresh2x.png' title='刷新' style='vertical-align:middle;'/></div></div>";
+	if(programList && programList.code == 200){		
+		var serviceTime = programList.serviceTime;
+		var datas = programList.data;
+		var keys = programList.data.keys;
+		if(keys && keys.length > 0){
+			$.each(keys, function(j) {
+				var programs = datas.programs[keys[j]]
+				var pname = "";
+				var team1 = {};
+				var team2 = {};
+				var startTime = "";
+				var endTime = "";
+				var score1 = 0;
+				var score2 = 0;
+				var explanationList = null;
+				$.each(programs, function(i) {
+					
+					team1 = programs[i].confrontTeams[0];
+					team2 = programs[i].confrontTeams[1];					
+					startTime = programs[i].startTime;
+					endTime = programs[i].endTime;
+					
+					pname = reconvertDateSM_MD(startTime);//programs[i].title || "-";
+					
+					score1 = team1.score;
+					score2 = team2.score;
+					if(score1<0)score1=0;
+					if(score2<0)score2=0;
+					
+					explanationList = programs[i].explanationList;
+					
+					if(i == 0){
+						if(c_pID == ""){
+							c_mgdbId = programs[i].mgdbId;
+							c_pID = programs[i].pID;
+						}
+					}
+					
+					var pid = programs[i].pID || "";
+					
+					if(serviceTime < startTime){
+						items +='<div class="vms-worldcup-item" mgdbId="'+programs[i].mgdbId+'" pid="'+pid+'">';
+					}else{
+						items +='<div class="vms-worldcup-item div-a" mgdbId="'+programs[i].mgdbId+'" pid="'+pid+'" onclick="clickExplanation('+programs[i].mgdbId+','+pid+')">';					
+					}
+					
+					items +='<div class="vms-pname">';
+						if(pname.length > 22){
+							items+='<div ><marquee direction="left" behavior="scroll" width="100%" scrollamount="1" scrolldelay="0" loop="-1" >'+pname+'</marquee></div>';
+						}else{
+							items+='<div >'+pname+'</div>';
+						}
+						items+='</div>'
+						+'<div class="vms-info-1">'
+							+'<img class="vms-img1" src="'+team1.image+'"/>';
+							
+							if(team1.name.length > 4){
+								items+='<div class="vms-tname"><marquee direction="left" behavior="scroll" width="100%" scrollamount="1" scrolldelay="0" loop="-1" >'+team1.name+'</marquee></div>';
+							}else{
+								items+='<div class="vms-tname">'+team1.name+'</div>';
+							}
+							
+						items+='</div>';						
+						
+						if(serviceTime < startTime){
+							items+= '<div class="vms-time">'+reconvertDateSM_HM(startTime)+'</div>';
+						}else{
+							items+= '<div class="vms-score">'+score1 +'&nbsp:&nbsp'+score2+'</div>';
+						}
+						
+						items+='<div class="vms-info-2">'
+							+'<img class="vms-img2" src="'+team2.image+'"/>';
+							
+							if(team2.name.length > 4){
+								items+='<div class="vms-tname"><marquee direction="left" behavior="scroll" width="100%" scrollamount="1" scrolldelay="0" loop="-1" >'+team2.name+'</marquee></div>';
+							}else{
+								items+='<div class="vms-tname">'+team2.name+'</div>';
+							}
+						
+						items+='</div>'
+						+'<div class="vms-state">';
+							if(serviceTime < startTime){//c < [s,e]
+								items+='<img class="vms-img-state" src="./images/btn_tvunstart2x.png"/>';
+							}else if(endTime && endTime < serviceTime){//[s,e] < c
+								//items+='<div class="div-a" mgdbId="'+programs[i].mgdbId+'"  onclick="clickWatchTV('+programs[i].mgdbId+','+programs[i].pID+')"><img class="vms-img-state" src="./images/btn_tvback2x.png"/></div>';
+								items+='<div mgdbId="'+programs[i].mgdbId+'"  ><img class="vms-img-state" src="./images/btn_tvback2x.png"/></div>';
+							}else{
+								//items+='<div class="div-a" mgdbId="'+programs[i].mgdbId+'"  onclick="clickWatchTV('+programs[i].mgdbId+','+programs[i].pID+')"><img class="vms-img-state" src="./images/btn_tvplaying2x.png"/></div>';
+								items+='<div mgdbId="'+programs[i].mgdbId+'"  ><img class="vms-img-state" src="./images/btn_tvplaying2x.png"/></div>';
+							}
+						items+='</div>'
+					+'</div>';	
+
+					if(explanationList){
+						items += '<img mgdbId="'+programs[i].mgdbId+'" pID="'+pid+'" class="wms-elevation-img" src="./images/bg_xiala.png"/>';
+						var tables='<table mgdbId="'+programs[i].mgdbId+'" pID="'+pid+'" class="wms-explanation" cellspacing="10">';
+						$.each(explanationList, function(i) {
+							if(i%2==0){
+								tables +='<tr >';
+							}
+							var einfos = explanationList[i].name.split("：");
+							var span1 = einfos[0] || "";
+							var span2 = einfos[1] || "";
+							tables +='<td class="wms-explanation-item" pID="'+explanationList[i].pID+'" mgdbId="'+explanationList[i].mgdbId+'" onclick="clickWatchTV('+explanationList[i].mgdbId+','+explanationList[i].pID+')"><span class="expandedSpan1">'+span1+'</span><p class="expandedSpace"></p><span class="expandedSpan2">'+span2+'</span></td>';
+							if(i%2!=0){
+								tables +='</tr>';
+							}
+						});
+						tables+='</table>';
+						items += tables;
+					}else{
+						var tables='<table class="wms-explanation" cellspacing="10"></table>';
+						items += tables;
+					}
+				});
+				
+			});
+
+		}
+		
+	}
+	$("#vms-worldcup-div").html(items);
+	$(".vms-worldcup-div").getNiceScroll().resize();
+	
+	if(isWatchFirstTV){
+		watchTV(c_mgdbId,c_pID);
+		isWatchFirstTV = false;
+	}
+	if(c_mgdbId || c_pID){
+		//focusItem(c_mgdbId,c_pID);
+		clickExplanation(c_mgdbId,c_pID);
+		focusExplanationItem(c_mgdbId,c_pID);
+	}
+	
+	$('.vms-worldcup-refresh').animate({rotate: '360'}, 500);
+}
+
+/****/
+var ajaxWatchTVObj = null;
+var watchTVReqLocked = false;
+function focusExplanationItem(mgdbId,pID){
+	var isExplanFocus = false;
+	$(".vms-worldcup-item").each(function(){
+		$(this).removeClass("vms-worldcup-item-hover");	
+	});
+	if(mgdbId){
+		$(".wms-explanation-item").each(function(){
+			$(this).removeClass("wms-explanation-item-focused");
+			$(this).find(".expandedSpan1").removeClass("expandedSpan1-focused");
+			$(this).find(".expandedSpan2").removeClass("expandedSpan2-focused");
+			if($(this).attr("mgdbId") == mgdbId){
+				if($(this).attr("pID") == pID){
+					$(this).addClass('wms-explanation-item-focused');	
+					$(this).find(".expandedSpan1").addClass("expandedSpan1-focused");
+					$(this).find(".expandedSpan2").addClass("expandedSpan2-focused");				
+					isExplanFocus = true;
+				}
+			}
+		});
+	}else if(pID){
+		$(".wms-explanation").each(function(){
+			if($(this).attr("mgdbId") == c_mgdbId || $(this).attr("pID") == c_pID){
+				var firstItem = null;				
+				$(this).find(".wms-explanation-item").each(function(i){
+					$(this).removeClass("wms-explanation-item-focused");
+					$(this).find(".expandedSpan1").removeClass("expandedSpan1-focused");
+					$(this).find(".expandedSpan2").removeClass("expandedSpan2-focused");
+					if(i == 0){
+						firstItem = $(this);
+					}
+					if($(this).attr("pID") == pID){
+						firstItem = null;
+						$(this).addClass('wms-explanation-item-focused');	
+						$(this).find(".expandedSpan1").addClass("expandedSpan1-focused");
+						$(this).find(".expandedSpan2").addClass("expandedSpan2-focused");
+					}
+				});
+				if(firstItem){
+					firstItem.addClass('wms-explanation-item-focused');	
+					firstItem.find(".expandedSpan1").addClass("expandedSpan1-focused");
+					firstItem.find(".expandedSpan2").addClass("expandedSpan2-focused");
+				}
+				return false;
+			}
+		});
+	}
+	
+	/*
+	$(".vms-worldcup-item").each(function(){
+		$(this).removeClass("vms-worldcup-item-hover");	
+	});
+	*/
+	
+	
+}
+
+function clickExplanation(mgdbId,pID){
+	$(".wms-explanation").each(function(){
+		$(this).hide();
+		if($(this).attr("mgdbId") == mgdbId || $(this).attr("pID") == pID){
+			$(this).show();
+		}
+	});
+	$(".wms-elevation-img").each(function(){
+		$(this).hide();
+		if($(this).attr("mgdbId") == mgdbId || $(this).attr("pID") == pID){
+			$(this).show();		
+		}
+	});
+
+	$(".vms-worldcup-item").each(function(){
+		$(this).removeClass("vms-worldcup-item-hover");
+		if(mgdbId != c_mgdbId && $(this).attr("mgdbId") == c_mgdbId){
+			$(this).addClass('vms-worldcup-item-hover');
+		}else if($(this).attr("pID") == c_pID){
+			if(c_pID != pID){
+				$(this).addClass('vms-worldcup-item-hover');
+			}else{
+				$(".wms-explanation").each(function(){
+					if($(this).attr("mgdbId") == c_mgdbId || $(this).attr("pID") == c_pID){
+						$(this).find(".wms-explanation-item").each(function(i){
+							if($(this).hasClass('wms-explanation-item-focused')){
+								return false;
+							}					
+						});
+						return false;
+					}
+				});
+			}
+			
+		}
+	});
+	
+	scrollToItem(mgdbId,pID);
+}
+function clickWatchTV(mgdbId,pID,rt){
+	noReAlert = 0;	
+	getPrePlayUrl = getCurPlayUrl;
+	if(getPrePlayUrl)
+		asyncReportPlayPreData(getPrePlayUrl,true,5000);
+	watchTV(mgdbId,pID);
+}
+var getCurPlayUrl = null;
+var getPrePlayUrl = null;
+function newGuid()
+{
+    var guid = "";
+    for (var i = 1; i <= 32; i++){
+      var n = Math.floor(Math.random()*16.0).toString(16);
+      guid +=   n;
+      if((i==8)||(i==12)||(i==16)||(i==20))
+        guid += "-";
+    }
+    return guid;    
+}
+function watchTV(mgdbId,pID,rt,isChangeRate){
+	var rtype = null;
+	if(rt){
+		rtype = rt;
+	}
+	isLoadDetailsFromSevr = true;
+	var timestamp = new Date().getTime();
+	var getPlayUrl = playUrl + "?timestamp="+timestamp+"&contId="+pID+"&rateType="+rtype;
+	if(!rtype){
+		getPlayUrl = playUrl + "?timestamp="+timestamp+"&contId="+pID;
+	}
+	getCurPlayUrl = getPlayUrl;
+	if(watchTVReqLocked && ajaxWatchTVObj != null){
+		ajaxWatchTVObj.abort();
+		ajaxWatchTVObj = null;
+	}
+	watchTVReqLocked = true;
+	ajaxWatchTVObj = $.ajax({			
+			url:getPlayUrl,			
+			async:true,
+			beforeSend: function(request) {
+				var infoString = getUserInfo();		
+				if(infoString){
+					infoString = infoString.replace(/'/g, "\"");
+					var info = JSON.parse(infoString);
+					
+					if(info){
+						request.setRequestHeader("userId", info.userId);
+						request.setRequestHeader("userToken", info.userToken);
+						request.setRequestHeader("SDKCEId", "79acd784-cbbb-4cae-8778-8723e001164b");	
+						request.setRequestHeader("X-UP-CLIENT-CHANNEL-ID", "0125_10010001005");
+						request.setRequestHeader("channel", "0125");
+						request.setRequestHeader("clientId",newGuid());
+					}
+				}else{
+						request.setRequestHeader("SDKCEId", "79acd784-cbbb-4cae-8778-8723e001164b");
+						request.setRequestHeader("X-UP-CLIENT-CHANNEL-ID", "0125_10010001005");
+						request.setRequestHeader("channel", "0125");
+						request.setRequestHeader("clientId",newGuid());				
+				}
+				
+      },
+			success: function(data, textStatus, jqXHR ){
+				
+				var isNeedLoginOrPlay = false;
+				try{
+					if(data.code == "409"){
+						ToLogin();
+						isNeedLoginOrPlay = true;
+					}else if(data.code == "401"){
+						try{migu_app.Stop();}catch(e){};
+						migu_app.ShowMiniEPG("networkout.html?id=2",0);
+					}else if (data.code == "200" &&  data.body.auth.logined == false) {//添加逻辑 直播需要强制登录
+						ToLogin();
+						isNeedLoginOrPlay = true;
+					}else if (data.code == "200" && data.body.content.drm == true){//修改人 kx 2019-05-30 接口返回drm=true 则弹出 版权提示
+						migu_app.ShowMiniEPG("networkout.html?id=11",0);
+					}else if(data.code == "200"){
+						var mediaFiles = data.body.mediaFiles;
+						var crts = 0;
+						if(mediaFiles){
+							for(var i=0;i<mediaFiles.length;i++){
+								var rtv = parseInt(mediaFiles[i].rateType);
+								if(rtv == 1 || rtv == 2){
+									crts += rtv;
+								}else if(rtv == 3){
+									crts += 4;
+								}else if(rtv == 4){
+									crts += 8;
+								}else if(rtv == 5){
+									crts += 16;
+								}else if(rtv == 6){
+									crts += 32;
+								}
+							}
+						}
+						if(crts > 0){
+								if(data.body.urlInfo){
+									var rateType = parseInt(data.body.urlInfo.rateType);
+									if(data.body.urlInfo.rateType == "3"){
+										rateType = 4;
+									}else if(data.body.urlInfo.rateType == "4"){
+										rateType = 8;
+									}else if(data.body.urlInfo.rateType == "5"){
+										rateType = 16;
+									}else if(data.body.urlInfo.rateType == "6"){
+										rateType = 32;
+									}
+									if("normal" == data.body.urlInfo.urlType || "tourist" == data.body.urlInfo.urlType){
+										if(data.body.urlInfo.url){
+											if(isChangeRate){
+												DisplayLoading();
+											}
+											c_mgdbId = mgdbId;
+											c_pID = pID;
+											c_rateType = rtype;
+											migu_app.PlayLive(data.body.content.contName, 1, rateType ,data.body.urlInfo.url, crts);											
+											
+											//clickExplanation(c_mgdbId);
+											//focusExplanationItem(c_mgdbId,pID);
+										}else{
+											networkOut();
+										}
+									}else if("trial" == data.body.urlInfo.urlType){
+										isNeedLoginOrPlay = true;
+										if(data.body.auth.logined == true){
+											if(isChangeRate){
+												var callbackUrl = "miguplay://html/WMSPlayerDetails.html?cid="+c_pID+"&mgdbId="+c_mgdbId;
+												migu_app.ShowMiniEPG(playOrder,callbackUrl,800,570);
+											}else if(noReAlert==1){
+												noReAlert = 0;
+											}else{
+												var callbackUrl = "miguplay://html/WMSPlayerDetails.html?cid="+c_pID+"&noReAlert=1"+"&mgdbId="+c_mgdbId;
+												migu_app.ShowMiniEPG(playOrder,callbackUrl,800,570);
+											}
+																					
+										}else{
+											ToLogin();
+										}
+									}else{
+										networkOut();
+									}
+								}else{
+									networkOut();
+								}
+						}
+							
+					}else if(data.code == "412"){
+						isNeedLoginOrPlay = true;
+						if(data.body.auth.logined == true){
+							if(isChangeRate){
+								var callbackUrl = "miguplay://html/WMSPlayerDetails.html?cid="+c_pID+"&mgdbId="+c_mgdbId;
+								migu_app.ShowMiniEPG(playOrder,callbackUrl,800,570);
+							}else if(noReAlert==1){
+								noReAlert = 0;
+							}else{
+								var callbackUrl = "miguplay://html/WMSPlayerDetails.html?cid="+c_pID+"&noReAlert=1"+"&mgdbId="+c_mgdbId;
+								migu_app.ShowMiniEPG(playOrder,callbackUrl,800,570);
+							}						
+						}else{
+							ToLogin();
+						}
+					}else {
+						networkOut();
+					}
+				}catch(e){
+					networkOut();
+				}
+				if(isNeedLoginOrPlay){
+				}else{
+					//focusItem(c_mgdbId,c_pID);
+					clickExplanation(c_mgdbId,c_pID);
+					focusExplanationItem(c_mgdbId,c_pID);
+				}
+				
+				asyncReportPlayingData(getCurPlayUrl);
+			},
+			error:function(qXHR, textStatus, errorThrown){
+				if(qXHR.status != 0){networkOut();}
+				//focusItem(c_mgdbId,c_pID);
+				clickExplanation(c_mgdbId,c_pID);
+				focusExplanationItem(c_mgdbId,c_pID);
+			},
+			complete:function(){//run after [success or error]
+				watchTVReqLocked = false;//release lock
+				noReAlert = 0;
+			}
+	});
+
+	
+}
+
+function scrollToItem(mgdbId,pid){
+	var wmsHeight = $("#vms-worldcup-div").height();
+	var wmsScrollTop = $("#vms-worldcup-div").scrollTop();
+	if(mgdbId){
+		$(".vms-worldcup-item").each(function(){
+			if($(this).attr("mgdbId") == mgdbId){
+				var iTop = $(this).position().top;
+				var scrollStep = -(wmsHeight/2-iTop)+$(this).height()/2;
+				$("#vms-worldcup-div").getNiceScroll(0).doScrollTop($("#vms-worldcup-div").getNiceScroll(0).scrollTop() + scrollStep);
+			}
+		});
+	}else{
+		$(".vms-worldcup-item").each(function(){
+			if($(this).attr("pid") == pid){
+				var iTop = $(this).position().top;
+				if((iTop > wmsHeight) && wmsScrollTop == 0){
+					$("#vms-worldcup-div").scrollTop(iTop+wmsScrollTop-(wmsHeight/2-$(this).height())-$(this).height()/2);
+				}else{
+					var scrollStep = -(wmsHeight/2-iTop)+$(this).height()/2;
+					$("#vms-worldcup-div").getNiceScroll(0).doScrollTop($("#vms-worldcup-div").getNiceScroll(0).scrollTop() + scrollStep);
+				}
+				return false;
+			}
+		});
+	}
+}
+
+function focusItem(mgdbId,pid){
+	var wmsHeight = $("#vms-worldcup-div").height();
+	var wmsScrollTop = $("#vms-worldcup-div").scrollTop();
+	if(mgdbId){
+		
+		$(".vms-worldcup-item").each(function(){
+			$(this).removeClass("vms-worldcup-item-hover");
+			if($(this).attr("mgdbId") == mgdbId){
+				$(this).addClass('vms-worldcup-item-hover');
+				var iTop = $(this).position().top;
+				var scrollStep = -(wmsHeight/2-iTop)+$(this).height()/2;
+				$("#vms-worldcup-div").getNiceScroll(0).doScrollTop($("#vms-worldcup-div").getNiceScroll(0).scrollTop() + scrollStep, 100);
+			}
+		});
+	}else{
+		$(".vms-worldcup-item").each(function(){
+			$(this).removeClass("vms-worldcup-item-hover");
+			if($(this).attr("pid") == pid){
+				$(this).addClass('vms-worldcup-item-hover');
+				var iTop = $(this).position().top;
+				if((iTop > wmsHeight) && wmsScrollTop == 0){
+					$("#vms-worldcup-div").scrollTop(iTop+wmsScrollTop-(wmsHeight/2-$(this).height())-$(this).height()/2);
+				}else{
+					var scrollStep = -(wmsHeight/2-iTop)+$(this).height()/2;
+					$("#vms-worldcup-div").getNiceScroll(0).doScrollTop($("#vms-worldcup-div").getNiceScroll(0).scrollTop() + scrollStep, 100);
+				}
+				return false;
+			}
+		});
+	}
+}
+
+//
+function reconvertDateSM_HM(time){
+	if(time){
+		var now = new Date();//当前系统时间
+		var p = new Date(time);//节目时间
+		/*
+		var n_y = now.getFullYear();
+		var n_m = now.getMonth();
+		var n_d = now.getDate();
+		var p_y = p.getFullYear();
+		var p_m = p.getMonth();
+		var p_d = p.getDate();*/
+		var p_h = p.getHours();
+		var p_m = p.getMinutes();
+		
+		return (p_h<10?"0"+p_h:p_h) +":"+(p_m<10?"0"+p_m:p_m);
+	}
+	return "-"
+}
+
+function reconvertDateSM_MD(time){
+	if(time){
+		var p = new Date(time);//节目时间
+		/*
+		var n_y = now.getFullYear();
+		var p_y = p.getFullYear();
+		var p_m = p.getMonth();
+		var p_d = p.getDate();*/		
+		var n_m = p.getMonth()+1;
+		var n_d = p.getDate();		
+		return (n_m) +" 月 "+(n_d)+" 日";
+	}
+	return "-"
+}
+/**end:*********************************************************/
+
+/**begin:*********************************************************/
+var WMSDelReqLocked = false;
+function load_vms_worldcup_details(url){
+	if(WMSDelReqLocked){//locked return
+		return;
+	}
+	WMSDelReqLocked = true;//lock requet
+	$.ajax({
+			url:url,			
+			async:true,
+			success: function(data, textStatus, jqXHR ){
+				parseWMSWroldCupDetail(data);
+			},
+			error:function(qXHR, textStatus, errorThrown){
+				parseWMSWroldCupDetail(null);
+			},
+			complete:function(){//run after [success or error]
+				WMSDelReqLocked = false;//release lock
+			}
+	});
+}
+function parseWMSWroldCupDetail(data){
+	var img_url = "";
+	var video_name = "";
+	var video_director = "";
+	var video_act = "";
+	var video_type = "";
+	var video_area = "";
+	var video_details = "";		
+	if(data && data.code == 200){
+		var program = data.data;
+		if(program.img.highResolutionV)
+			document.getElementById("video_poster").src = program.img.highResolutionV;	
+		else if(program.img.highResolutionH){
+			document.getElementById("video_poster").src = program.img.highResolutionH;	
+		}else if(program.bgTitle){
+			document.getElementById("video_poster").src = program.bgTitle;
+		}
+		video_name = program.title;
+		video_details += program.description;
+	}
+	$("#video_name>td:nth-child(1)").text(video_name);
+	$("#video_director>td:nth-child(2)").text(video_director);
+	$("#video_act>td:nth-child(2)").text(video_act);
+	$("#video_type>td:nth-child(2)").text(video_type);
+	$("#video_area>td:nth-child(2)").text(video_area);
+	$("#video_details>td:nth-child(1)").html(video_details);	
+	$(".details-div").getNiceScroll().resize();	
+	isLoadDetailsFromSevr = false;
+}
+function imgError(id){
+	document.getElementById(id).src = "./images/btn_poster_default2x.png";
+}
+/**end:*********************************************************/
+</script>
+
+<script type="text/javascript">
+var GetLength = function (str) {
+    ///<summary>获得字符串实际长度，中文2，英文1</summary>
+    ///<param name="str">要获得长度的字符串</param>
+    var realLength = 0, len = str.length, charCode = -1;
+    for (var i = 0; i < len; i++) {
+        charCode = str.charCodeAt(i);
+        if (charCode >= 0 && charCode <= 128) realLength += 1;
+        else realLength += 2;
+    }
+    return realLength;
+};
+
+/** 
+  * js截取字符串，中英文都能用 
+  * @param str：需要截取的字符串 
+  * @param len: 需要截取的长度 
+  */
+function cutstr(str, len) {
+    var str_length = 0;
+    var str_len = 0;
+    str_cut = new String();
+    str_len = str.length;
+    for (var i = 0; i < str_len; i++) {
+        a = str.charAt(i);
+        str_length++;
+        if (escape(a).length > 4) {
+            //中文字符的长度经编码之后大于4  
+            str_length++;
+        }
+        str_cut = str_cut.concat(a);
+        if (str_length >= len) {
+            str_cut = str_cut.concat("...");
+            return str_cut;
+        }
+    }
+    //如果给定字符串小于指定长度，则返回源字符串；  
+    if (str_length < len) {
+        return str;
+    }
+}
+</script>
+
+<script type="text/javascript">
+
+//设置滚动条
+$(".vms-worldcup-div").niceScroll({
+	cursorcolor:"#3B3B3B",
+	cursorborder: "#3B3B3B",
+	cursorwidth: "8px"
+});
+$(".details-div").niceScroll({
+	cursorcolor:"#3B3B3B",
+	cursorborder: "#3B3B3B",
+	cursorwidth: "8px"
+});
+
+function resizeFN() {
+	var wheight = $(window).height();
+	if(wheight == 0){
+		return;
+	}
+	$(".vms-worldcup-div").animate({height:wheight-55},"0",function(){
+		$(".vms-worldcup-div").getNiceScroll().resize();
+		$("#iframe-content").getNiceScroll().resize();		
+	});	
+	$(".details-div").animate({height:wheight-55},"0",function(){
+		$(".details-div").getNiceScroll().resize();
+	});	
+	$(".more-opt-div").animate({height:wheight-55},"0",function(){
+		$(".more-opt-div").getNiceScroll().resize();
+		$("#topFrame").getNiceScroll().resize();
+	});
+	
+}
+$(window).resize(resizeFN);
+resizeFN();
+
+function InitData(cid,isLive){
+	migu_app.CloseMiniEPG();
+	try{migu_app.Stop();}catch(e){};
+	if(isLive == 1){
+		noReAlert = 0;
+		initParams("WMSPlayerDetails.html?cid="+cid,true);
+		//migu_app.LoadUrl(2,"http://m.miguvideo.com/mgs/hybrid/ppsport/prd/rankList.html?seasonId=1215&competitionId=1&platform=PLATFORM");
+		onReadyFun();
+	}else {
+		if(getCurPlayUrl)
+			asyncReportPlayPreData(getCurPlayUrl,false,400);
+		setTimeout(function(){
+			window.location.href = "vodpage.html?playcid="+cid;
+		},500);
+	}
+}
+
+function DisplayLoading(){
+	try{migu_app.Stop();}catch(e){};
+	migu_app.ShowMiniEPG("loading.html",0);
+}
+var account_name="";
+var phone_number="";
+function updateUserInfoFun(){
+	$.ajax({
+			url:"http://www.miguvideo.com/uic-service/userInfo/queryByUserId",			
+			async:true,
+			cache:false,
+			success: function(data, textStatus, jqXHR ){
+				if(data.resultCode == "1014"){
+					migu_app.updateUserInfo("");
+					account_name="";
+					phone_number="";
+				}else if(data.resultCode == "0000"){
+					account_name=data.data.name;
+					phone_number=data.data.mobile;
+					if(data.data.picture){
+						migu_app.updateUserInfo("http://www.miguvideo.com/uic-service/publish/clt"+data.data.picture);
+					}else{
+						migu_app.updateUserInfo("1");
+					}
+					
+				}
+			},
+			error:function(qXHR, textStatus, errorThrown){
+
+			},
+			complete:function(){//run after [success or error]
+				
+			}
+	});
+}
+updateUserInfoFun();
+
+/**登陆**/
+//callby PC 
+function Login(){
+	if(isLogin()){
+		//migu_app.LoadUrl(3,"http://www.miguvideo.com/wap/resource/miguPC_client/memberCenter/user_center.jsp");
+		migu_app.LoadUrl(3,"http://www.miguvideo.com/mgs/website/prd/personalCenter.html#/setting/personalInfo?plt=clt");
+	}else{
+		ToLogin();
+	}
+}
+function isLogin(){
+	
+	var infoString = getUserInfo();
+	if(infoString){
+		infoString = infoString.replace(/'/g, "\"");
+		var info = JSON.parse(infoString);
+
+		if(info.userId && info.userToken){
+			return true;
+		}
+	}	
+	return false;
+}
+function ToLogin(){
+	migu_app.Login("miguplay://html/WMSPlayerDetails.html?cid="+c_pID+"&noReLogin=1"+"&mgdbId="+c_mgdbId);
+}
+function getUserId(){
+	var infoString = getUserInfo();
+	if(infoString){
+		infoString = infoString.replace(/'/g, "\"");
+		var info = JSON.parse(infoString);
+		if(info.userId){
+			return info.userId;
+		}
+	}
+	return "";
+}
+
+function initOrPlay(){
+	changeUI(0);
+	isLoadDetailsFromSevr = true;
+	//load_vms_worldcup_programList(g_list_url);
+	if(c_pID){
+		getPrePlayUrl = getCurPlayUrl;
+		if(getPrePlayUrl)
+			asyncReportPlayPreData(getPrePlayUrl,true,5000);
+		
+		if(c_rateType){
+			watchTV(c_mgdbId,c_pID,c_rateType);
+		}else{
+			watchTV(c_mgdbId,c_pID);
+		}
+			
+	}else{
+		isWatchFirstTV = true;
+	}
+}
+
+function onReadyFun(){
+	initOrPlay();
+}
+$(document).ready(onReadyFun);
+
+</script>
+
+<script type="text/javascript">
+
+function RefreshPage(){
+	noReAlert = 0;
+	initOrPlay();
+}
+
+function playFinish(){
+	replayVodTV();
+}
+function NextFile(){
+	if(c_mgdbId == "" || c_pID == ""){
+		
+	}else{
+		var s_dom = $(".vms-state>.div-a");
+		var cIndex = -1;		
+		s_dom.each(function(index) {
+			if(cIndex != -1){
+				$(this).click();
+				return false;
+			}			
+			if($(this).attr("mgdbId") == c_mgdbId){
+				cIndex = index;
+			}			
+			return true;
+		});
+	}
+}
+
+function changeRateEvent(rate){
+	if(rate == 4){
+		rate = 3;
+	}else if(rate == 8){
+		rate = 4;
+	}else if(rate == 16){
+		rate = 5;
+	}else if(rate == 32){
+		rate = 6;
+	}
+	noReAlert = 0;
+	
+	getPrePlayUrl = getCurPlayUrl;
+	if(getPrePlayUrl)
+		asyncReportPlayPreData(getPrePlayUrl,true,5000);
+	watchTV(c_mgdbId,c_pID,rate,1);
+}
+
+function networkOut(){
+	try{migu_app.Stop();}catch(e){};
+	migu_app.ShowMiniEPG("networkout.html?id=3",0);
+}		
+
+function replayVodTV(){
+	migu_app.ShowMiniEPG("networkout.html?id=4",0);
+}		
+
+function asyncReportPlayPreData(playUrl,async,timeout){
+	var user_id = getUserId();
+	var visitor_type= 0;
+	if(user_id){
+		visitor_type = 1;
+	}
+	var mac_address = migu_app.GetMac();
+	var visit_time=getCurTime();
+	var ip_address="";
+	var app_version=migu_app.GetVersion();
+	var channel_id="";
+	var visit_page="";
+	var src_position="";
+	var visit_session_id="migu"+guid();
+	var visit_url=encodeURIComponent(playUrl,'UTF-8');
+	var detail="";
+	var browser = migu_app.getIEVersion();
+	
+	var duration = migu_app.getConfig("playTime");
+	var runtime= migu_app.getConfig("runTime");
+
+	setTimeout(function(){
+	    var url = "http://pc.miguvideo.com/MiguApi/statistics/report.ac?report_type=5&visit_time="+visit_time +"&visitor_type="+visitor_type+"&user_id="+user_id+"&account_name="+account_name+"&phone_number="+phone_number+"&os="+migu_app.getWinVersion()+"&browser="+browser+"&mac_address="+mac_address+"&app_version="+app_version+"&visit_url="+visit_url+"&detail="+detail+"&duration="+duration+"&runtime="+runtime;
+
+		$.ajax({
+				url:url,
+				type:"POST",
+				async:async,
+				cache:false,
+				timeout:timeout,
+				success: function(data, textStatus, jqXHR ){
+				},
+				error:function(qXHR, textStatus, errorThrown){
+				},
+				complete:function(){//run after [success or error]
+					
+				}
+		});
+	},100);
+}
+
+function asyncReportPlayingData(playUrl){
+	var user_id = getUserId();
+	var visitor_type= 0;
+	if(user_id){
+		visitor_type = 1;
+	}
+	var mac_address = migu_app.GetMac();
+	var visit_time=getCurTime();
+	var ip_address="";
+	var app_version=migu_app.GetVersion();
+	var channel_id="";
+	var visit_page="";
+	var src_position="";
+	var visit_session_id="migu"+guid();
+	var visit_url=encodeURIComponent(playUrl,'UTF-8');
+	var detail="";
+	var browser = migu_app.getIEVersion();
+	
+	var duration = 0;//migu_app.getConfig("playTime");
+	var runtime= migu_app.getConfig("runTime");
+
+	setTimeout(function(){
+	    var url = "http://pc.miguvideo.com/MiguApi/statistics/report.ac?report_type=3&visit_time="+visit_time +"&visitor_type="+visitor_type+"&user_id="+user_id+"&account_name="+account_name+"&phone_number="+phone_number+"&os="+migu_app.getWinVersion()+"&browser="+browser+"&mac_address="+mac_address+"&app_version="+app_version+"&visit_url="+visit_url+"&detail="+detail+"&runtime="+runtime;//"&duration="+duration+
+		$.ajax({
+				url:url,
+				type:"POST",
+				async:true,
+				cache:false,
+				success: function(data, textStatus, jqXHR ){
+
+				},
+				error:function(qXHR, textStatus, errorThrown){
+					
+				},
+				complete:function(){//run after [success or error]
+					
+				}
+		});
+	},100);
+}
+
+function exitApp(){
+	var user_id = getUserId();
+	var visitor_type= 0;
+	if(user_id){
+		visitor_type = 1;
+	}
+	var mac_address = migu_app.GetMac();
+	var visit_time=getCurTime();
+	var ip_address="";
+	var app_version=migu_app.GetVersion();
+	var channel_id="";
+	var visit_page="";
+	var src_position="";
+	var visit_session_id="migu"+guid();
+	var visit_url="";
+	var detail="";
+	var browser = migu_app.getIEVersion();//IEVersion();
+	var duration = migu_app.getConfig("playTime");
+	var runtime= migu_app.getConfig("runTime");
+	
+	var url = "http://pc.miguvideo.com/MiguApi/statistics/report.ac?report_type=2&visit_time="+visit_time +"&visitor_type="+visitor_type+"&user_id="+user_id+"&account_name="+account_name+"&phone_number="+phone_number+"&os="+migu_app.getWinVersion() +"&browser="+browser+"&mac_address="+mac_address+"&app_version="+app_version+"&visit_url="+visit_url+"&detail="+detail+"&runtime="+runtime;
+
+	$.ajax({
+		url:url,	
+		type:"POST",
+		async:false,
+		cache:false,
+		timeout : 2500, 
+		success: function(data, textStatus, jqXHR){
+
+		},
+		error:function(qXHR, textStatus, errorThrown){
+
+		},
+		complete:function(){//run after[success or error]
+			
+		}
+	});
+	
+
+	var url1 = "http://pc.miguvideo.com/MiguApi/statistics/report.ac?report_type=5&visit_time="+visit_time +"&visitor_type="+visitor_type+"&user_id="+user_id+"&account_name="+account_name+"&phone_number="+phone_number+"&os="+migu_app.getWinVersion() +"&browser="+browser+"&mac_address="+mac_address+"&app_version="+app_version+"&visit_url="+visit_url+"&detail="+detail+"&duration="+duration+"&runtime="+runtime;
+	$.ajax({
+		url:url1,	
+		type:"POST",
+		async:false,
+		cache:false,
+		timeout : 2500, 
+		success: function(data, textStatus, jqXHR){
+
+		},
+		error:function(qXHR, textStatus, errorThrown){
+			
+		},
+		complete:function(){//run after[success or error]
+			
+		}
+	});
+}	
+</script>
+</body>
+</html>

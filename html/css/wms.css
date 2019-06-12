@@ -1,0 +1,224 @@
+body {
+    margin: 0;
+    padding: 0;
+    width: 278px;
+    height: 100%;
+	background:	#1B1B1B;
+	overflow:hidden;
+}
+.div-a{
+	cursor:pointer;
+	color: #CCCCCC;
+}
+
+.menu-div-ul{
+	position:relative;
+	width:278px;
+	height:50px;
+	color:#FFFFFF;
+}
+.menu-div-li{
+	position:absolute;
+	top:10px;
+	padding:5px;
+	display:inline;
+	text-align:center;
+	font-size:14px;
+	font-family:'PingFangSC-Regular';
+	background: #373737;
+	border:1px solid #373737;
+	border-radius: 2px;
+	color:#CCCCCC;
+}
+.menu-div-li:hover{
+	cursor:pointer;
+}
+
+/* begin：直播-赛事日程表 #0B0B0C;*/
+.vms-worldcup-div{
+	position:relative;
+	width:278px;
+    height:480px;
+	background: #1B1B1B;
+	display:none;	
+	
+	overflow-x:hidden;
+	overflow-y:auto;
+	scrollbar-arrow-color: #1B1B1B; /**//*三角箭头的颜色*/   
+    scrollbar-face-color: #B5A075; /**//*立体滚动条的颜色B5A075*/   
+    scrollbar-3dlight-color: #1B1B1B; /**//*立体滚动条亮边的颜色*/   
+    scrollbar-highlight-color: #1B1B1B; /**//*滚动条空白部分的颜色*/   
+    scrollbar-shadow-color: #1B1B1B; /**//*立体滚动条阴影的颜色*/   
+    scrollbar-darkshadow-color: #1B1B1B; /**//*立体滚动条强阴影的颜色*/   
+    scrollbar-track-color: #1B1B1B; /**//*立体滚动条背景颜色*/   
+    scrollbar-base-color:#1B1B1B; /**//*滚动条的基本颜色*/ 
+}
+
+.vms-worldcup-refresh{
+	position:relative;
+	width:50px;
+	height:20px;
+	line-height:20px;
+	left:190px;
+	font-size:14px;
+}
+
+.vms-worldcup-item{
+	position:relative;
+	margin:10px;
+	width:238px;
+	height:84px;
+	background: #373737;
+	border-radius: 4px;
+}
+
+.vms-worldcup-item:hover{
+	box-shadow:0 0 1px 0px #EE6723,
+    0 0 0px 1px #EE6723;
+}
+
+.vms-time{
+	position:absolute;
+	left:109px;
+	top:29px;
+	width:41px;
+	height:17px; 
+	color:#999999;
+	font-size:12px;
+	font-family:'PingFangSC-Regular';
+}
+
+.vms-pname{
+	position:absolute;	
+	top:8px;
+	width:100%;
+	text-align:center;
+	color:#CCCCCC;
+	font-size:12px;
+	font-family:'PingFangSC-Semibold';	
+}
+
+.vms-tname {
+	margin-top:2px;
+	color:#CCCCCC;
+	font-size:10px;
+	font-family:'PingFangSC-Regular';
+	text-align:center;
+	text-overflow:ellipsis;
+    white-space:nowrap;
+}
+
+.vms-info-1{
+	position:absolute;
+	left:30px;
+	top:21px;
+	width:36px;
+}
+.vms-img1{
+	width:36px;
+	height:36px;
+}
+
+.vms-info-2{
+	position:absolute;
+	left:192px;
+	top:21px;
+	width:36px;
+}
+.vms-img2{
+	width:36px;
+	height:36px;
+}
+.vms-state .vms-img-state{
+	position:absolute;
+	left:106px;
+	top:55px;
+	width:42px;
+	height:18px;
+}
+/* end：直播-赛事日程表 */
+
+
+/* begin: 互动 */
+
+.more-opt-div{
+	position:relative;
+	width:278px;
+    height:480px;
+	background:	#1B1B1B;
+	display:none;
+}
+.more-opt-title{
+	position:absolute;
+	left:20px;
+	top:19px;
+	color:#FFFFFF;
+	font-size:14px;
+	font-family:'PingFangSC-Regular';
+}
+.more-opt-bar{
+	position:absolute;
+	left:35px;
+	top:65px;
+	width:208px;
+    height:208px;
+}
+.more-opt-text1 {
+	position:absolute;
+	left:91px;
+	top:283px;
+	color:#A5A5A5;
+	font-size:14px;
+	font-family:'PingFangSC-Regular';
+}
+.more-opt-text2{
+	position:absolute;
+	left:84px;
+	top:306px;
+	color:#A5A5A5;
+	font-size:14px;
+	font-family:'PingFangSC-Regular';
+}
+
+/*end: 互动*/
+
+
+/*begn:详情*/
+.details-div{
+	position:relative;
+	width:278px;
+    height:480px;
+	background:	#1B1B1B;
+	display:none;
+	overflow-x:hidden;
+	overflow-y:auto;
+	scrollbar-arrow-color: #1B1B1B; /**//*三角箭头的颜色*/   
+    scrollbar-face-color: #1B1B1B; /**//*立体滚动条的颜色B5A075*/   
+    scrollbar-3dlight-color: #1B1B1B; /**//*立体滚动条亮边的颜色*/   
+    scrollbar-highlight-color: #1B1B1B; /**//*滚动条空白部分的颜色*/   
+    scrollbar-shadow-color: #1B1B1B; /**//*立体滚动条阴影的颜色*/   
+    scrollbar-darkshadow-color: #1B1B1B; /**//*立体滚动条强阴影的颜色*/   
+    scrollbar-track-color: #1B1B1B; /**//*立体滚动条背景颜色*/   
+    scrollbar-base-color:#1B1B1B; /**//*滚动条的基本颜色*/
+}
+.details-div > img{
+	width:120px;
+    height:171px;
+}
+#video_name{
+	font-family: PingFangSC-Regular;
+	font-size: 16px;
+	color: #CCCCCC;
+	letter-spacing: 0.7px;
+	text-align: left;
+}
+#video_director,#video_act,#video_area,#video_type,#video_details_lab,#video_details{
+	font-family: PingFangSC-Regular;
+	font-size: 14px;
+	color: #999999;
+	letter-spacing: 0.61px;
+	text-align: left;
+	line-height:26px;
+	letter-spacing:1px; 
+}
+/*end:详情*/

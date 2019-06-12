@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>share</title>
+<style>
+*{margin:0;padding:0;background-color: #494949; }
+#warp{
+    width:130px;
+	height:20px;
+	margin:0 auto;
+	background-color: #494949; 
+}
+#title{
+    font-family: STHeitiSC-Medium,"microsoft yahei";
+	font-size: 18px;
+	color: #FFFFFF;
+	letter-spacing: 0.78px;
+	text-align:center;
+	vertical-align:middle;
+	line-height:20px;
+	margin-top:15px;
+}
+</style>
+</head>
+<script type="text/javascript" src="js/param.js"></script>
+<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+<script>
+var nameStr = UrlParam.paramValues("msg");
+</script>
+<body>
+<div id="warp">
+	<div id="title"></div>	
+</div>
+</body>
+</html>
+<script>
+document.getElementById("title").innerHTML=nameStr;
+setTimeout(function(){
+	closeWin();
+},1000);
+function closeWin(){
+	migu_app.CloseMiniEPG();
+}
+</script>

@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>复选框（checkbox）全选/全不选/返选</title>
+    <script src="http://code.jquery.com/jquery-3.3.1.js"
+            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+            crossorigin="anonymous"></script>
+    <style>
+        body,dl,dt,dd,p{margin:0;padding:0;}
+        body{font-family:Tahoma;font-size:12px;}
+        label,input,a{vertical-align:middle;}
+        label{padding:0 10px 0 5px;}
+        a{color:#09f;text-decoration:none;}
+        a:hover{color:red;}
+        dl{width:120px;margin:10px auto;padding:10px 5px;border:1px solid #666;border-radius:5px;background:#fafafa;}
+        dt{padding-bottom:10px;border-bottom:1px solid #666;}
+        dt label{font-weight:700;}
+        p{margin-top:10px;}
+    </style>
+</head>
+<body>
+<dl>
+    <dt>
+        <input type="checkbox" id="checkAll" />
+        <label>全选</label>
+        <a href="javascript:;">反选</a>
+    <p style="color: red">显示选中</p>
+    </dt>
+
+    <dd>
+        <p><input type="checkbox" name="item" value="1"/><label>选项（一）</label></p>
+        <p><input type="checkbox" name="item" value="2"/><label>选项（二）</label></p>
+        <p><input type="checkbox" name="item" value="2"/><label>选项（三）</label></p>
+        <p><input type="checkbox" name="item" value="3"/><label>选项（四）</label></p>
+    </dd>
+</dl>
+<center>1、切换全选/全不选文字；2、根据选中个数更新全选框状态；</center>
+<script src="js/jquery-2.0.3.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function()
+    {
+        //全选效果
+        var check=$('dt input');
+        var check_list=$('dd input');
+        check.click(function()
+        {
+            /* checkbox 判断是否选中方法
+             var check=$(this).is(":checked");var check=$(this).get(0).checked;var check=$(this).attr('checked');在jQuery1.6版本之后，取复选框有没有被选中，要用prop*/
+            var box=check.prop('checked');
+            if(box==true)
+            {
+                $('dt label').text('全不选');
+                check_list.prop('checked',true);
+            }
+            else
+            {
+                $('dt label').text('全选');
+                check_list.prop('checked',false);
+            }
+
+        });
+
+        //全选按钮选中状态判断
+        function checks()
+        {
+            //根据checkbox总数与选中的checkbox比较，判断全选按钮状态
+            var checkall=check_list.length;//总数
+            var num=0;
+            check_list.each(function()
+            {//当前选中
+                var boxs=$(this).prop('checked');
+                if(boxs==true)
+                {
+                    num++;
+                }
+            });
+            (checkall==num)?check.prop('checked',true):check.prop('checked',false);
+
+        }
+
+
+        //反选hover效果；
+        $('a').hover(function()
+        {
+            $('a').css('color','red');
+        },function()
+        {
+            $('a').css('color','#09f');
+        });
+
+        //反选效果
+        $('a').click(function()
+        {
+            check_list.each(function()
+            {
+                var now=$(this).prop('checked');//获取当前的checkbox状态；
+                $(this).prop('checked',!now);//赋予当前相反的状态
+            });
+            checks();
+        });
+
+        //check_list 下的checkbox发生点击事件
+//        check_list.click(function()
+//        {
+//            checks();
+//        });
+
+        //显示选中
+        $('dt p').click(function()
+        {
+            var arr=new Array();
+            check_list.each(function(i)
+            {
+                var boxs=$(this).prop('checked');
+                if(boxs==true)
+                {
+                    arr[i]=$(this).val();
+                }
+            });
+            console.log(arr);
+            if(arr!='')
+            {
+                var str=arr.join(',');
+            }
+            else
+            {
+                str='你没有选中任何一个';
+            }
+
+            alert(str);
+        });
+    });
+</script>
+</body>
+</html>

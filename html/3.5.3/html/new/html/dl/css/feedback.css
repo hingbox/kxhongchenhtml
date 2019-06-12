@@ -1,0 +1,33 @@
+.main{
+    padding: 20px;
+    width: 620px;
+    height: 440px;
+}
+.input-style{
+    margin:30px 0
+}
+#divType,#selectType{
+    font-family:'PingFangSC-Regular',"-apple-system","microsoft yahei";
+    font-size: 14px;
+    color: #333333
+}
+#divTitle{
+    font-family:'PingFangSC-Regular',"-apple-system","microsoft yahei";
+    font-size: 18px;
+    text-align: center;
+    color: #333333
+}
+#btn_submt{
+    vertical-align:middle;
+    height: 30px;
+    width: 90px;
+    border-radius:4px;
+    margin-right: 50px;
+    font-size:18px;
+    background-color:#007AFF;
+    color: #FFFFFF;
+    border:none
+}
+#disappare{border:0px solid #ccc;border-radius: 5px;background: #333333;font-size: 20px;
+    width: 150px;height: 90px;position: fixed;top:50%;left: 50%;margin:-100px 0px 0 -80px;font-family:'PingFangSC-Regular',"-apple-system","microsoft yahei";}
+#disappare p{padding: 5px;font-size: 16px;font-family:'PingFangSC-Regular',"-apple-system","microsoft yahei";}

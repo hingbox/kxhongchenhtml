@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>聊天室测试</title>
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<link rel="stylesheet" href="css/bootstrap.css"/>
+	<link rel="stylesheet" href="css/toastr.min.css"/>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/toastr.min.js"></script>
+	<style type="text/css">
+		html, body, div, span, applet, object, iframe,
+		h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+		a, abbr, acronym, address, big, cite, code,
+		del, dfn, em, img, ins, kbd, q, s, samp,
+		small, strike, strong, sub, sup, tt, var,
+		b, u, i, center,
+		dl, dt, dd, ol, ul, li,
+		fieldset, form, label, legend,
+		table, caption, tbody, tfoot, thead, tr, th, td,
+		article, aside, canvas, details, embed,
+		figure, figcaption, footer, header,
+		menu, nav, output, ruby, section, summary,
+		time, mark, audio, video {
+			margin: 0;
+			padding: 0;
+			border: 0;
+			font-size: 100%;
+			font: inherit;
+			vertical-align: baseline;
+		}
+		/* HTML5 display-role reset for older browsers */
+		article, aside, details, figcaption, figure,
+		footer, header, menu, nav, section {
+			display: block;
+		}
+		ol, ul {
+			list-style: none;
+		}
+		blockquote, q {
+			quotes: none;
+		}
+		blockquote:before, blockquote:after,
+		q:before, q:after {
+			content: '';
+			content: none;
+		}
+		table {
+			border-collapse: collapse;
+			border-spacing: 0;
+		}
+		html{
+			height: 100%;
+			overflow: hidden;
+		}
+		body{
+			width: 100%;
+			height: 100%;
+			overflow: hidden;
+			/*background-color: gainsboro;*/
+			font: 12px/1.4 '微软雅黑';
+			line-height: 1;
+			background: #1B1B1B;
+		}
+		.wrapper{
+			/*width: 80%;*/
+			height: 95%;
+			border-radius: 5px;
+			/*border: 1px solid #ccc;*/
+			margin: 10px auto;
+			/*background-color: #EFF4FA;*/
+			background: #1B1B1B;
+			box-sizing: border-box;
+		}
+
+		.wrapper .content{
+			box-sizing: border-box;
+			height: 90%;
+			border: 0px solid #ccc;
+			margin: 1% 0px;
+			padding: 5px;
+			/*overflow-y:auto;*/
+			background-color: #1B1B1B;
+		}
+
+		.wrapper .content ul li{
+			font-size: 14px;
+			padding: 5px;
+			color: #ffffff;
+		}
+		.wrapper .content ul li span{
+			font-style: italic;
+			color: greenyellow;
+		}
+
+		.wrapper .action{
+			box-sizing: border-box;
+			height: 14%;
+			border: 0px solid #ccc;
+			margin: 1% 0px;
+			padding: 5px;
+			overflow: hidden;
+		}
+		.wrapper #tt{
+			box-sizing: border-box;
+			height: 14%;
+			border: 0px solid #ccc;
+			margin: 0.5% 0px;
+			padding: 1px;
+			overflow: hidden;
+		}
+		.wrapper .action textarea{
+			width: 100%;
+			height: 50%;
+			line-height: 50%;
+			border-radius: 30px;
+			display: block;
+			margin-bottom: 5px;
+			padding: 5px;
+			vertical-align:middle
+			/*vertical-align: middle;*/
+			/*display: table-cell*/
+		}
+		.wrapper .action button{
+			float: right;
+			margin-right: 5px;
+			margin-left: 5px;
+		}
+	</style>
+</head>
+<body>
+<script>
+	//migu_app.SetConfig("roomId","11111");
+
+	function getUrlPara(name) {
+		var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)","i");
+		var r = window.location.search.substr(1).match(reg);
+		if (r!=null) return (r[2]); return null;
+	}
+	var userId =getUrlPara("userId");
+	var userName =getUrlPara("userName");
+
+	//var roomId =getUrlPara("roomId");
+	var roomId = "room2018110717304515_SR11";//暂时用预生产的地址
+	//alert("userId="+userId+"userName="+userName+"roomId="+roomId)
+//		var userId = "517231729";
+		//var roomId = "room2018110717304515_SR11";
+//		var userName = "talk";
+
+	/**
+	 * 解决跨域问题
+	 */
+	$.ajaxPrefilter( function (options) {
+		if (options.crossDomain && jQuery.support.cors) {
+			var http = (window.location.protocol === 'http:' ? 'http:' : 'https:');
+			//options.url = options.url;
+			options.url = http + '//cors-anywhere.herokuapp.com/' + options.url;
+			options.crossDomain=false;
+			//options.url = "http://cors.corsproxy.io/url=" + options.url;
+		}
+	});
+
+	//websocket的url
+	var wsUrl='';
+	//进入聊天室 获取ws地址
+	var userId = "517231729";
+	var roomNo = "room2018110717304515_SR11";
+	var userName = "talk";
+	//var chatUrl = "http://chatroom.open.cmvideo.cn:8080";//生产地址
+	var chatUrl="http://183.192.162.101:8083";//预生产地址
+	var readyState=4;//判断是
+	var status='';
+	$.ajax({
+		type: "get",
+		url: chatUrl + "/chatlbs/enterRoom?userName="+userName+"&userId="+userId+"&type=102&level=105&roomNo="+roomId,
+		contentType: "application/json;charset=utf-8",
+		dataType:"json",
+		success: function (data) {
+			if (data.ret == "SUCC") {
+				//获取ws地址
+				wsUrl = data.wsUrl;
+				WebSocketTest();
+				console.log("获取WebStocketUrl成功-->"+wsUrl)
+			}
+		},error:function(error){
+			readyState = error.readyState;
+			status = error.status;
+			console.log("获取webStocketUrl失败"+JSON.stringify(error));
+		}
+	});
+
+	//创建Socket示例
+	var socket= null;
+	//创建websocket
+	function WebSocketTest(){
+		socket  = new WebSocket(wsUrl);
+		// 打开Socket
+		socket.onopen = function(event) {
+			var params= {
+				isWebSocket: true,
+				msgType: 15,
+				roomNo: roomId,
+				userId: userId,
+				id: userId,
+				userName: userName,
+				level: 105,
+				type: 102,
+				profile: '{avatar: ""}',
+				plat: 'pc'
+			};
+			socket.send(JSON.stringify(params));
+			// 监听消息
+			socket.onmessage = function(event) {
+				var data = JSON.parse(event.data);
+				//console.log("talk接收消息"+JSON.stringify(data));//调试用
+				if (data != "true" || data !="{}" ||data !=undefined){
+					var msg = JSON.stringify(data.msg);
+					if (msg =="" ||msg == undefined) {
+					}else {
+						var child = JSON.parse(msg);
+						for (var p in child) {
+							//console.log(child[p].id + " " + child[p].msg);
+							var user = JSON.stringify(child[p].user);
+							var t =JSON.parse(user)
+							console.log("user"+ t.name);
+							addMessage(t.name, child[p].msg, t.id);
+						}
+					}
+				}
+			};
+			// 监听Socket的关闭
+			socket.onclose = function(event) {
+				console.log('Client notified socket has closed',event);
+			};
+			// 关闭Socket....
+			//socket.close()
+		}
+	};
+	/**
+	 * 消息在聊天屏幕上显示的样式
+	 * @param from
+	 * @param msg
+	 * @param user_Id
+     */
+	var addMessage = function(from, msg,user_Id){
+		//这个地方判断是左边显示还是右边显示
+		//根据当前用户id来比较  如果当前收到的消息中的userId与自己想同，则显示在右边，否在现实在左边
+		if (userId == user_Id) {
+			var li = document.createElement('li');
+			li.setAttribute("class","me");
+			li.style.float ="right";
+			li.style.clear="right";
+			li.style.textAlign="right";
+			li.style.width="100%";
+			li.style.color="#CCCCCC";
+			li.style.fontSize="14px";
+			li.innerHTML = '<span  style="color: #777777;font-size: 11px">' + from + ' : '+ '</span>' +'<br/>'+ msg;
+			document.querySelector('#chat_conatiner').appendChild(li);
+			// 设置内容区的滚动条到底部
+			document.querySelector('#chat').scrollTop = document.querySelector('#chat').scrollHeight;
+			// 并设置焦点
+			document.querySelector('input').focus();
+		}else{
+			var li = document.createElement('li');
+			li.setAttribute("class","other");
+			li.style.float ="left";
+			li.style.clear="left";
+			li.style.textAlign="left";
+			li.style.width="100%";
+			li.style.fontSize="14px";
+			li.style.color="#CCCCCC";
+			//显示左边
+			li.innerHTML = '<span  style="color: #777777;font-size: 11px">' + from + ' : '+ '</span>' +'<br/>'+ msg;
+			document.querySelector('#chat_conatiner').appendChild(li);
+			// 设置内容区的滚动条到底部
+			document.querySelector('#chat').scrollTop = document.querySelector('#chat').scrollHeight;
+			// 并设置焦点
+			document.querySelector('input').focus();
+		}
+
+	};
+	//发送消息
+	function sendMsg() {
+//		var ele_msg = document.querySelector('textarea');
+		var input_msg = document.querySelector('input');
+		var msg = input_msg.value.replace('\r\n', '').trim();
+
+		if(msg == ""){
+			toastr.warning('发送内容不能为空！','提示');
+			return false;
+		}
+		if (wsUrl == "") {
+			toastr.warning('直播已结束！','提示');
+			return false;
+		}
+		if(socket == null) {
+			toastr.success('聊天室初始化，请稍后');
+			return false;
+		}
+		console.log("发送消息内容为："+msg);
+		if (socket.readyState == socket.OPEN) {
+			$.ajax({
+				type: "post",
+				url:chatUrl+"/chatrecv/receiveMessage?userId="+userId+"&msg="+msg+"&roomNo="+roomId,
+				contentType: "application/json;charset=utf-8",
+				//dataType: "json",
+				dataType:"json",
+				success: function (data) {
+					input_msg.value = '';
+					//经产品确认，发送之后不需要任何提示
+//					if (data.ret == "SUCC"){
+//						input_msg.value = '';
+//						toastr.success('发送成功');
+//					}else{
+//						if (data.result == "hasSensitiveWords") {
+//							toastr.warning('发送失败，内容包含敏感词');
+//						}else {
+//							toastr.warning('发送失败，发送频率过快');
+//						}
+//					}
+
+				},error:function(error){
+					console.log(JSON.stringify(error));
+				}
+			});
+
+		}
+	};
+
+	document.onkeydown = function(event){
+		var e = event || window.event; //兼容ie
+		switch(e.keyCode) {
+			case 13: // enter 键
+				if (!window.buttonIsFocused) sendMsg();
+				break;
+		}
+	};
+</script>
+<script>
+	toastr.options = {
+		closeButton: false,
+		debug: false,
+		progressBar: true,
+		positionClass: "toast-bottom-center",
+		onclick: null,
+		showDuration: "300",
+		hideDuration: "1000",
+		timeOut: "2000",
+		extendedTimeOut: "1000",
+		showEasing: "swing",
+		hideEasing: "linear",
+		showMethod: "fadeIn",
+		hideMethod: "fadeOut"
+	};
+</script>
+<script>
+
+</script>
+<div class="wrapper">
+	<div class="content" id="chat">
+		<ul id="chat_conatiner">
+		</ul>
+	</div>
+	<!--<div class="action" >-->
+		<!--&lt;!&ndash; 限制文本框 最多30个中文汉字&ndash;&gt;-->
+		<!--<textarea maxlength="30" placeholder="来说两句吧&#45;&#45;"></textarea>-->
+		<!--<button class="btn btn-success" id="clear">清屏</button>-->
+		<!--<button class="btn btn-success" id="send" onclick="sendMsg();">发送</button>-->
+	<!--</div>-->
+	<div class="row" id="tt">
+		<div class="col-lg-12">
+			<div class="input-group">
+				<input type="text"  maxlength="30" class="form-control" placeholder="来说两句吧~~">
+					<span class="input-group-btn">
+						<button class="btn btn-default" type="button" onclick="sendMsg();onfocus="window.buttonIsFocused=true;" onblur="window.buttonIsFocused=false;"">
+							发送
+						</button>
+					</span>
+			</div><!-- /input-group -->
+		</div><!-- /.col-lg-6 -->
+	</div><!-- /.row -->
+</div>
+</body>
+</html>
