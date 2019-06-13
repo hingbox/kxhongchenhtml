@@ -9,40 +9,51 @@ body{
 }
 #main{
     /*width: window.innerWidth;*/
-    width: auto;
-    height: 450px;
+    width: 700px;
+    height: 535px;
     background-color: #333333;
 }
 #title{
+    /*font-family:'PingFangSC-Regular',"-apple-system","MicrosoftYaHei";*/
+    /*color: #999999;*/
+    /*font-size:18px;*/
+    height: 60px;
+    /*line-height: 24px;*/
+}
+#left_title {
     font-family:'PingFangSC-Regular',"-apple-system","microsoft yahei";
     color: #999999 ;
-    padding-left: 25px;
-    padding-top:15px;
-    height:40px;
-    font-size:18px;
+    font-size: 18px;
+    padding-top: 18px;
+    padding-left: 30px;
 }
+
 #radio_div{
     font-family:'PingFangSC-Regular',"-apple-system","microsoft yahei";
-    color:#999999;
     padding-left: 25px;
     padding-right: 25px;
     font-size:14px;
+    height: 60px;
+    border:1px solid #2D2D2D;
 }
-/*#cont_list{*/
-   /**/
-    /*padding: 25px;*/
-/*}*/
+#cont_list{
+    height: 260px;
+    padding-left: 25px;
+    padding-right: 25px;
+}
 #cont_list{
     background-color: #2D2D2D;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    /*padding-left: 20px;*/
+    /*padding-right: 20px;*/
+    /*padding-top: 10px;*/
+    /*padding-bottom: 10px;*/
     color: #999999;
+    height: 260px;
 }
 .inputs{
     /*padding: 50px;*/
     margin-left: 15px;
+    line-height: 30px;
 }
 #select_text{
     font-family:'PingFangSC-Regular',"-apple-system","microsoft yahei";
@@ -50,18 +61,33 @@ body{
     font-size:14px;
     background-color: #2D2D2D;
     margin-left: 15px;
+    height: 40px;
 
 }
+#select_text_w{
+    font-family:'PingFangSC-Regular',"-apple-system","microsoft yahei";
+    color: #999999 ;
+    font-size:14px;
+    padding-top: 0px;
+    line-height: 40px;
+}
+#check{
+    background:#181818;
+    border-radius: 3px;
+    margin-top: 0px;
+    line-height: 40px;
+}
 #route{
+    margin-top: 10px;
     padding: 15px;
-    height:30px;
+    height:38px;
 }
 #button_part{
     color:#FFFFFF;
     text-align:center;
-    height:30px;
-    line-height:30px;
-    margin-top: 20px;
+    height:40px;
+    line-height:40px;
+    margin-top: 8px;
 }
 
 #cancel_btn{
@@ -87,6 +113,12 @@ body{
     color: #FFFFFF;
     border:none
 }
+#path{
+    width: 450px;
+    background: #252525;
+    border-width: 0;
+    color:#999999;
+}
 #select_nums{
     display: inline-block;
     height:5px;
@@ -101,7 +133,7 @@ body{
     vertical-align:middle;
 }
 #box{
-    height: 150px;
+    height: 180px;
     overflow:auto;
     border: 1px solid #252525;
     background-color: #252525
@@ -127,6 +159,7 @@ body{
       /* 单选按钮的样式*/
   .choose {
       position: relative;
+      margin-top: 20px;
   }
 
 .choose .radio {

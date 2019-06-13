@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .wrap {
+            width: 100px;
+            height: 100px;
+            border:1px solid #666;
+            position: relative;
+
+        }
+        .wrap input{
+            width: 14px;
+            height: 14px;
+        }
+        .wrap label{
+            width: 14px;
+            height:14px;
+            background-image:url("img/check_n.png");
+            /*border:1px solid #119be3;*/
+            position: absolute;/*一定要这个*/
+            left: 10px;
+        }
+        .wrap input:checked+label{ /*这段代码是当input选中时,给input的相邻标签label加一个背景图片*/
+            background-image:url("img/check.png")
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <input type="checkbox" id="checkboxsss" >
+    <label for="checkboxsss"></label>
+</div>
+</body>
+</html>

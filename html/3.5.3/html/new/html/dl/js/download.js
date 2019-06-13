@@ -74,7 +74,6 @@ function getProgramList(data){
             var variety = data[i].Variety;
             var html='';
             var cid='';
-
             for (j in variety){
                 cid = variety[j].contId;//节目id
                 newName = variety[j].newName;//节目名称
@@ -92,8 +91,10 @@ function getProgramList(data){
                         "mediaSize":"",
                         "url":""
                     });
-
-                html+='<input class="inputs" type="checkbox" name="content" onclick="checkboxOnclick(this)" value="'+cid+'" />'+newName+'<input name="img" type="hidden" value="'+imgH+'"/><br/>';
+                //html+='<input type="checkbox" /><br/>';
+                //html+='<input type="checkbox" class="inputs" id="checkboxsss"><label for="checkboxsss"></label></br>';
+                //html+=+'<input class="inputs" id="checkbox" type="checkbox" name="content" onclick="checkboxOnclick(this)" value="'+cid+'" />'+newName+'<input name="img" type="hidden" value="'+imgH+'"/><br/>';
+                html+='<input style="margin-bottom: -2px" class="inputs" type="checkbox" name="content" onclick="checkboxOnclick(this)" value="'+cid+'" />'+newName+'<input name="img" type="hidden" value="'+imgH+'"/><br/>';
                 $('#box').html(html);
             }
         }else{
@@ -117,7 +118,7 @@ function getProgramList(data){
                     "url":""
                 });
 
-            html+='<input class="inputs" type="checkbox" name="content" onclick="checkboxOnclick(this)" value="'+cid+'" />'+newName+'<input name="img" type="hidden" value="'+imgH+'"/><br/>';
+            html+='<input style="margin-bottom: -2px" class="inputs" type="checkbox" name="content" onclick="checkboxOnclick(this)" value="'+cid+'" />'+newName+'<input name="img" type="hidden" value="'+imgH+'"/><br/>';
             $('#box').html(html);
         }
     }
